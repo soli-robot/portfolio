@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI & Robotics Developer Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts: Plus Jakarta Sans & Noto Sans KR -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="dark-theme">
+    <!-- 마우스 반응형 백그라운드 글로우 -->
+    <div class="pointer-glow" id="pointerGlow"></div>
+
+    <!-- 네비게이션 헤더 -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">ROBOTICS.AI<span>_</span></a>
+            <nav class="nav-links">
+                <a href="#hero" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+            <div class="nav-actions">
+                <button id="themeToggle" class="theme-toggle-btn" aria-label="테마 스위치">
+                    <i data-lucide="sun" class="sun-icon"></i>
+                    <i data-lucide="moon" class="moon-icon"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="메뉴 열기">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 모바일 드롭다운 메뉴 -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#hero" class="mobile-link">Home</a>
+        <a href="#about" class="mobile-link">About</a>
+        <a href="#projects" class="mobile-link">Projects</a>
+        <a href="#contact" class="mobile-link">Contact</a>
+    </div>
+
+    <!-- 히어로 섹션 -->
+    <section id="hero" class="hero-section">
+        <div class="hero-content">
+            <span class="hero-tagline">AI & ROBOTICS ENGINEER PORTFOLIO</span>
+            <h1 class="hero-title">인공지능과 로봇 제어로<br><span>실제 문제를 해결</span>합니다.</h1>
+            <p class="hero-description">
+                로봇 팔(Manipulator) 제어, 자율주행 모바일 로봇(AMR) 경로 계획, 컴퓨터 비전 객체 인식 및 LLM 연동 에이전트 시스템까지, 하드웨어와 AI 소프트웨어를 통합하는 역량을 갖추었습니다.
+            </p>
+            <div class="hero-btns">
+                <a href="#projects" class="btn btn-primary">프로젝트 탐색</a>
+                <a href="#contact" class="btn btn-secondary">연락하기</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="visual-circle animate-pulse-slow"></div>
+            <div class="visual-card-wrapper">
+                <div class="visual-card info-card">
+                    <i data-lucide="cpu" class="icon-blue"></i>
+                    <div>
+                        <h4>AI & Robotics</h4>
+                        <p>ROS2 & LLM Agent</p>
+                    </div>
+                </div>
+                <div class="visual-card speed-card">
+                    <i data-lucide="eye" class="icon-yellow"></i>
+                    <div>
+                        <h4>Vision & Predict</h4>
+                        <p>YOLO & Time-Series</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 자기소개 및 기술 스택 -->
+    <section id="about" class="about-section container section-padding">
+        <div class="section-header scroll-reveal">
+            <h2>About Me</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="about-grid">
+            <div class="about-text scroll-reveal">
+                <h3>하드웨어와 소프트웨어를 잇는 다리</h3>
+                <p>
+                    단순한 화면 코딩에 머무르지 않고, 복잡한 로봇 제어 모듈과 고도화된 인공지능 알고리즘을 연결하는 솔루션을 설계합니다. 
+                    ROS2 시스템 상에서 다양한 센서(RealSense, OAK-D) 데이터 스트림을 활용하고, LLM을 결합해 인간의 모호한 명령을 수행하는 에이전트 아키텍처 구현을 경험했습니다.
+                </p>
+                <p>
+                    개발한 시스템이 현실 세계에서 실제로 동작하고 사람의 수고를 덜어줄 때 가장 큰 재미를 느낍니다. 
+                    지속적인 학습과 트러블슈팅 경험을 통해 복잡한 시스템의 응답 속도를 개선하고, 비용을 낮추는 최적화 과정에 강점이 있습니다.
+                </p>
+                
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">핵심 프로젝트 수행</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">83%</span>
+                        <span class="stat-label">LLM Latency 단축 기록</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-skills scroll-reveal">
+                <h3>My Skills</h3>
+                <div class="skills-category">
+                    <h4>Robotics & Control</h4>
+                    <div class="skills-list">
+                        <span class="skill-badge"><i data-lucide="activity"></i> ROS2 (Jazzy / Humble)</span>
+                        <span class="skill-badge"><i data-lucide="arrow-right-left"></i> Modbus TCP</span>
+                        <span class="skill-badge"><i data-lucide="cpu"></i> Doosan Robotics DRL</span>
+                        <span class="skill-badge">NVIDIA Isaac Sim</span>
+                    </div>
+                </div>
+                <div class="skills-category">
+                    <h4>AI & Vision</h4>
+                    <div class="skills-list">
+                        <span class="skill-badge"><i data-lucide="brain-circuit"></i> Ollama (Llama 3 / Qwen 2.5)</span>
+                        <span class="skill-badge"><i data-lucide="scan-eye"></i> YOLOv8-seg / OAK-D</span>
+                        <span class="skill-badge"><i data-lucide="cog"></i> PyTorch (1D-CNN + LSTM)</span>
+                        <span class="skill-badge">MediaPipe Gesture</span>
+                    </div>
+                </div>
+                <div class="skills-category">
+                    <h4>Frontend & Languages</h4>
+                    <div class="skills-list">
+                        <span class="skill-badge"><i data-lucide="terminal"></i> Python</span>
+                        <span class="skill-badge"><i data-lucide="braces"></i> JavaScript</span>
+                        <span class="skill-badge">Flask & Streamlit</span>
+                        <span class="skill-badge">HTML5 / CSS3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 프로젝트 쇼케이스 -->
+    <section id="projects" class="projects-section container section-padding">
+        <div class="section-header scroll-reveal">
+            <h2>Featured Projects</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="projects-grid">
+            <!-- Project 1: Google Drive Uploader -->
+            <div class="project-card scroll-reveal">
+                <div class="project-img-placeholder icon-uploader">
+                    <i data-lucide="upload-cloud" class="project-placeholder-icon"></i>
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span>Web App</span>
+                        <span>Google API v3</span>
+                        <span>OAuth 2.0 (GIS)</span>
+                    </div>
+                    <h3>Google Drive Uploader</h3>
+                    <p>Google Identity Services 및 Drive REST API v3를 활용하여 로컬 파일을 브라우저에서 구글 드라이브의 원하는 경로(내 드라이브 및 하위 폴더)로 안전하게 다중 업로드할 수 있는 반응형 웹 애플리케이션입니다.</p>
+                    <div class="project-links">
+                        <a href="./projects/google-drive-uploader/index.html" class="btn btn-primary btn-sm" target="_blank">
+                            <i data-lucide="external-link"></i> 라이브 데모 실행
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: LAMA (춘식아 해줘) -->
+            <div class="project-card scroll-reveal">
+                <div class="project-img-placeholder icon-robot">
+                    <i data-lucide="bot" class="project-placeholder-icon"></i>
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span>Llama3 & Qwen</span>
+                        <span>ROS2</span>
+                        <span>Computer Vision</span>
+                        <span>1D-CNN + LSTM</span>
+                    </div>
+                    <h3>AI 협동 로봇 작업 어시스턴트</h3>
+                    <p><strong>"춘식아 해줘"</strong>: 작업 지시 LLM(Llama 3)과 코드 생성 LLM(Qwen 2.5-Coder)을 분리한 3단계 분업 아키텍처를 도입하여 모호한 자연어 명령을 로봇 제어 코드로 자동 변환합니다. RealSense 카메라 기반 비전 좌표 보정 및 미디어파이프 제스처 제어, 고장 예지보전 시스템을 통합했습니다.</p>
+                    <div class="project-links">
+                        <button class="btn btn-secondary btn-sm play-video-btn" data-video="./projects/lama/최종_춘식아 해줘.mp4" data-title="AI 협동 로봇 작업 어시스턴트 시연">
+                            <i data-lucide="play-circle"></i> 시연 영상 재생
+                        </button>
+                        <a href="./projects/lama/춘식아 해줘 - AI 협동 로봇 작업 어시스턴트_20260526044917.pptx" class="btn btn-secondary btn-sm" download>
+                            <i data-lucide="file-text"></i> 발표 자료 (PPTX)
+                        </a>
+                        <a href="./projects/lama/C3 src" class="btn btn-secondary btn-sm" target="_blank">
+                            <i data-lucide="folder-git"></i> 소스 코드
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: Braille AMR -->
+            <div class="project-card scroll-reveal">
+                <div class="project-img-placeholder icon-amr">
+                    <i data-lucide="compass" class="project-placeholder-icon"></i>
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span>YOLOv8-seg</span>
+                        <span>OAK-D</span>
+                        <span>ROS2</span>
+                        <span>Flask Dashboard</span>
+                    </div>
+                    <h3>시각 장애인 안내용 자율주행 AMR</h3>
+                    <p>OAK-D 카메라와 YOLOv8-seg 기술을 결합하여 실시간으로 점자 블록을 탐지 및 추적하는 자율주행 모바일 로봇(AMR) 제어 시스템입니다. Flask 기반의 실시간 시스템 모니터링 대시보드를 구축해 로봇의 주행 상태 및 진단 정보를 제공합니다.</p>
+                    <div class="project-links">
+                        <a href="./projects/braille/D-1_지능1_Design_Doc.pdf" class="btn btn-secondary btn-sm" target="_blank">
+                            <i data-lucide="file-text"></i> 설계 문서 (PDF)
+                        </a>
+                        <a href="./projects/braille/D-1_지능1_시스템_설계도.drawio" class="btn btn-secondary btn-sm" download>
+                            <i data-lucide="layout-template"></i> 아키텍처 설계도
+                        </a>
+                        <a href="./projects/braille/D-1_지능1_src" class="btn btn-secondary btn-sm" target="_blank">
+                            <i data-lucide="folder-git"></i> 소스 코드
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4: Find Thief (박살팀) -->
+            <div class="project-card scroll-reveal">
+                <div class="project-img-placeholder icon-security">
+                    <i data-lucide="shield-alert" class="project-placeholder-icon"></i>
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span>Object Detection</span>
+                        <span>ROS2</span>
+                        <span>Python</span>
+                        <span>PyTorch</span>
+                    </div>
+                    <h3>박물관 보안 관제 및 도둑 탐지 시스템</h3>
+                    <p>다중 CCTV 카메라 입력 스트림을 실시간 분석하여 무단 접근 및 의심 행동(도둑)을 조기에 감지하고 자동 알림 및 ROS2 노드를 통한 위치 추적 장치와 통신하는 실시간 관제 프레임워크입니다.</p>
+                    <div class="project-links">
+                        <button class="btn btn-secondary btn-sm play-video-btn" data-video="./projects/find_thief/박물관 보안 관제 박살팀_시연영상.mp4" data-title="박물관 보안 관제 시스템 시연">
+                            <i data-lucide="play-circle"></i> 시연 영상 재생
+                        </button>
+                        <a href="./projects/find_thief/2조 박살 발표 ppt.pdf" class="btn btn-secondary btn-sm" target="_blank">
+                            <i data-lucide="file-text"></i> 발표 자료 (PDF)
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5: Isaac Workspace -->
+            <div class="project-card scroll-reveal">
+                <div class="project-img-placeholder icon-isaac">
+                    <i data-lucide="cuboid" class="project-placeholder-icon"></i>
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span>NVIDIA Isaac Sim</span>
+                        <span>Isaac Gym</span>
+                        <span>Reinforcement Learning</span>
+                    </div>
+                    <h3>NVIDIA Isaac Sim 로봇 시뮬레이션 환경</h3>
+                    <p>물리 엔진(PhysX) 기반 하드웨어 인더스트리얼 액추에이터 및 매니퓰레이터 시뮬레이션을 구현하고, 환경 맵을 구축하여 실제 현장 도입 전 다중 시나리오를 가상 테스트할 수 있는 개발 환경 리포지토리입니다.</p>
+                    <div class="project-links">
+                        <a href="./projects/isaac/README.md" class="btn btn-secondary btn-sm" id="btnIsaacReadme">
+                            <i data-lucide="file-question"></i> 작업 가이드 보기
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 연락처 및 방명록 -->
+    <section id="contact" class="contact-section container section-padding">
+        <div class="section-header scroll-reveal">
+            <h2>Contact</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="contact-grid scroll-reveal">
+            <div class="contact-info">
+                <h3>함께 일하고 소통하고 싶습니다!</h3>
+                <p>로봇 제어, 임베디드 AI 솔루션, 협동 로봇 인프라 구축 등 다양한 프로젝트 협업 제안 및 문의를 환영합니다.</p>
+                
+                <div class="contact-list">
+                    <div class="contact-item">
+                        <i data-lucide="mail"></i>
+                        <div>
+                            <span>이메일</span>
+                            <p id="emailText">your-email@example.com</p>
+                        </div>
+                        <button id="copyEmailBtn" class="btn-icon" title="이메일 주소 복사">
+                            <i data-lucide="copy"></i>
+                        </button>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="github"></i>
+                        <div>
+                            <span>GitHub Proflie</span>
+                            <p><a href="https://github.com" target="_blank">github.com/your-username</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form-wrapper">
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">성함</label>
+                        <input type="text" id="name" required placeholder="성함을 입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">이메일 주소</label>
+                        <input type="email" id="email" required placeholder="example@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">메시지</label>
+                        <textarea id="message" rows="5" required placeholder="남기실 말씀을 작성해주세요."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">메시지 전송</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 비디오 플레이어 모달 -->
+    <div id="videoModal" class="video-modal hidden">
+        <div class="video-modal-content">
+            <div class="video-modal-header">
+                <h3 id="videoTitle">프로젝트 시연 영상</h3>
+                <button id="closeVideoBtn" class="close-btn"><i data-lucide="x"></i></button>
+            </div>
+            <div class="video-wrapper">
+                <video id="modalVideoPlayer" controls>
+                    <source src="" type="video/mp4">
+                    브라우저가 비디오 태그를 지원하지 않습니다.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; 2026 Portfolio. All rights reserved.</p>
+            <p>Created by Dev.</p>
+        </div>
+    </footer>
+
+    <!-- UI 토스트 메시지 -->
+    <div id="toast" class="toast hidden"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

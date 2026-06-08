@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Drive Uploader & Explorer</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts: Plus Jakarta Sans & Noto Sans KR -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons for modern UI icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- 사이드바 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i data-lucide="hard-drive" class="logo-icon"></i>
+                <h2>GDrive Hub</h2>
+            </div>
+            
+            <div class="profile-section" id="profileSection" style="display: none;">
+                <img id="userAvatar" src="" alt="사용자 프로필" class="avatar">
+                <div class="user-info">
+                    <span id="userName" class="user-name">사용자 이름</span>
+                    <span id="userEmail" class="user-email">email@example.com</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <button class="nav-item active" id="btnShowUpload">
+                    <i data-lucide="upload-cloud"></i> 업로드 홈
+                </button>
+                <button class="nav-item" id="btnShowSettings">
+                    <i data-lucide="settings"></i> 설정 (OAuth/API)
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <p>상태: <span id="connectionStatus" class="status-disconnected">연결 안 됨</span></p>
+            </div>
+        </aside>
+
+        <!-- 메인 콘텐츠 영역 -->
+        <main class="main-content">
+            <!-- 헤더 -->
+            <header class="header">
+                <div>
+                    <h1 id="pageTitle">Google Drive 업로드 센터</h1>
+                    <p class="subtitle" id="pageSubtitle">내 드라이브에 안전하게 파일을 업로드하고 관리하세요.</p>
+                </div>
+                <button id="authBtn" class="btn btn-primary">
+                    <i data-lucide="log-in"></i> 구글 로그인
+                </button>
+            </header>
+
+            <!-- 설정 뷰 -->
+            <section id="settingsView" class="content-section card hidden">
+                <h2>API 및 인증 설정</h2>
+                <p class="description">구글 드라이브 API를 사용하려면 Google Cloud Console에서 클라이언트 ID와 API 키를 발급받아야 합니다. 입력한 정보는 브라우저의 로컬 스토리지(LocalStorage)에만 안전하게 저장되며, 서버로 전송되지 않습니다.</p>
+                
+                <div class="form-group">
+                    <label for="clientId">OAuth 2.0 클라이언트 ID (Client ID)</label>
+                    <input type="text" id="clientId" placeholder="example.apps.googleusercontent.com 형식의 ID 입력">
+                </div>
+                <div class="form-group">
+                    <label for="apiKey">API 키 (API Key)</label>
+                    <input type="password" id="apiKey" placeholder="AIzaSy... 형식의 API Key 입력">
+                </div>
+                <button id="saveSettingsBtn" class="btn btn-success">
+                    <i data-lucide="save"></i> 설정 저장
+                </button>
+                
+                <div class="instructions-card">
+                    <h3>💡 Google Cloud Console 설정 방법</h3>
+                    <ol>
+                        <li><a href="https://console.cloud.google.com/" target="_blank">Google Cloud Console</a>에 로그인합니다.</li>
+                        <li>프로젝트를 생성하거나 선택합니다.</li>
+                        <li><strong>[API 및 서비스 > 라이브러리]</strong> 메뉴에서 <strong>Google Drive API</strong>를 검색하여 '사용(Enable)' 버튼을 누릅니다.</li>
+                        <li><strong>[API 및 서비스 > 사용자 인증 정보]</strong> 메뉴로 이동합니다.</li>
+                        <li>'사용자 인증 정보 만들기'에서 <strong>API 키</strong>를 만들고 복사하여 설정창의 API Key 칸에 입력합니다.</li>
+                        <li>'사용자 인증 정보 만들기'에서 <strong>OAuth 클라이언트 ID</strong>를 만듭니다. (애플리케이션 유형: <em>웹 애플리케이션</em>)</li>
+                        <li><strong>승인된 JavaScript 원본(Authorized JavaScript Origins)</strong>에 현재 로컬 테스트 도메인인 <code>http://localhost:8000</code>을 반드시 추가합니다.</li>
+                        <li>생성된 클라이언트 ID를 복사하여 설정창의 Client ID 칸에 입력하고 저장합니다.</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- 메인 업로드 & 탐색 Dashboard -->
+            <section id="dashboardView" class="content-section active-section">
+                <div class="dashboard-grid">
+                    <!-- 왼쪽: 파일 업로드 카드 -->
+                    <div class="card upload-card">
+                        <h2>업로드할 파일 선택</h2>
+                        <div id="dropZone" class="drop-zone">
+                            <i data-lucide="cloud-upload" class="upload-icon"></i>
+                            <p class="primary-text">파일을 여기로 드래그 앤 드롭 하세요</p>
+                            <p class="secondary-text">또는 클릭하여 파일 선택</p>
+                            <input type="file" id="fileInput" multiple style="display: none;">
+                        </div>
+
+                        <div class="queue-container">
+                            <div class="queue-header">
+                                <h3>업로드 대기열</h3>
+                                <button id="clearQueueBtn" class="btn btn-text btn-sm hidden">전체 비우기</button>
+                            </div>
+                            <div id="uploadQueue" class="upload-queue">
+                                <div class="empty-state">
+                                    <i data-lucide="inbox"></i>
+                                    <p>대기 중인 파일이 없습니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button id="startUploadBtn" class="btn btn-primary btn-block" disabled>
+                            <i data-lucide="send"></i> 구글 드라이브로 업로드 시작
+                        </button>
+                    </div>
+
+                    <!-- 오른쪽: 대상 폴더 탐색기 -->
+                    <div class="card explorer-card">
+                        <h2>업로드 대상 경로 지정</h2>
+                        <div class="breadcrumbs-container">
+                            <div id="breadcrumbs" class="breadcrumbs">
+                                <span class="breadcrumb-item active" data-id="root">My Drive</span>
+                            </div>
+                        </div>
+                        <div class="explorer-toolbar">
+                            <button id="newFolderBtn" class="btn btn-secondary btn-sm" disabled>
+                                <i data-lucide="folder-plus"></i> 새 폴더 생성
+                            </button>
+                            <button id="refreshBtn" class="btn btn-secondary btn-sm" disabled>
+                                <i data-lucide="refresh-cw"></i> 새로고침
+                            </button>
+                        </div>
+                        <div id="folderList" class="folder-list">
+                            <div class="empty-state">
+                                <i data-lucide="lock"></i>
+                                <p>먼저 로그인을 해주세요.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- UI 토스트 메시지 -->
+    <div id="toast" class="toast hidden"></div>
+
+    <!-- Script loading -->
+    <script src="app.js"></script>
+    <script src="https://accounts.google.com/gsi/client" onload="gisLoaded()" async defer></script>
+</body>
+</html>
