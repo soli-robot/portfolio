@@ -5,9 +5,7 @@ OAK-D 스테레오 카메라와 YOLOv8-seg 인공지능 모델을 융합하여 �
 ---
 
 ## 🎥 시연 영상 (Demo Video)
-- [시연 영상 보기 (Google Drive)](https://drive.google.com/file/d/your-braille-video-id/view?usp=sharing)
-  > [!TIP]
-  > 대용량 파일 업로드 제한으로 인해 고화질 시연 영상은 Google Drive 공유 링크를 통해 제공됩니다.
+- [시연 영상 보기](https://github.com/soli-robot/portfolio/releases/download/v1.0.0-videos/braille_video.mp4)
 
 ---
 
