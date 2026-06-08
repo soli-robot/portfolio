@@ -1,0 +1,6 @@
+Flask>=3.0.0
+ultralytics>=8.0.0
+opencv-python>=4.8.0
+numpy>=1.24.0
+pydantic>=2.0.0
+# Note: ROS2 Humble specific libraries (rclpy, etc.) must be installed via apt-get or sourced from ROS2 desktop environment.

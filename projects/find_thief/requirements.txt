@@ -1,0 +1,9 @@
+torch>=2.0.0
+torchvision>=0.15.0
+opencv-python>=4.8.0
+numpy>=1.24.0
+pydantic>=2.0.0
+# Multi-Object Tracking
+lap
+pyyaml
+# Note: ROS2 Humble specific packages (rclpy, etc.) should be installed in the ROS2 system.

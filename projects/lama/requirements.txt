@@ -1,0 +1,17 @@
+flask>=3.0.0
+flask-cors>=4.0.0
+torch>=2.0.0
+numpy>=1.24.0
+pandas>=2.0.0
+streamlit
+ollama
+websocket-client
+faster-whisper
+SpeechRecognition
+pyaudio
+firebase-admin
+opencv-python
+scipy
+ultralytics
+mediapipe
+# Note: rclpy, pyrealsense2 and other ROS2 specific libraries should be installed via system packages or ROS2 workspaces.

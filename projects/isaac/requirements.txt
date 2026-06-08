@@ -1,0 +1,6 @@
+torch>=2.0.0
+numpy>=1.24.0
+scipy>=1.8.0
+gym>=0.21.0
+# Note: Omniverse and carb Python packages are embedded within the Isaac Sim installation directory.
+# You must run scripts using the Isaac Sim Python interpreter: `./python.sh your_script.py`
