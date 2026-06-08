@@ -92,15 +92,15 @@ cd $ISAAC_SIM_PATH
 # Isaac Sim GUI 실행 및 백그라운드 서버 구동
 ./isaac-sim.sh
 ```
-*Omniverse Launcher를 통해서도 실행 가능하며, `projects/isaac/scene.usd` 파일을 스테이지에 로드합니다.*
+*Omniverse Launcher를 통해서도 실행 가능하며, `scene.usd` 파일을 스테이지에 로드합니다.*
 
 ### Step 3. 제어 스크립트 또는 강화학습 에이전트 실행
 Isaac Sim의 전용 Python 인터프리터를 사용하여 가상 로봇에 제어 신호를 보내거나, 강화학습 루프를 시작합니다.
 ```bash
 # ROS2 통신 노드 기반 로봇 제어 스크립트 실행
-$ISAAC_SIM_PATH/python.sh robot_control_loop.py
+$ISAAC_SIM_PATH/python.sh src/robot_control_loop.py
 
 # Isaac Gym 강화학습 (PPO) 에이전트 훈련 시작
-$ISAAC_SIM_PATH/python.sh train_rl_agent.py --task DoosanPickAndPlace
+$ISAAC_SIM_PATH/python.sh src/train_rl_agent.py --task DoosanPickAndPlace
 ```
 *정상적으로 구동되면 Isaac Sim 화면상의 로봇 팔이 파란색 물체를 감지하여 지정된 트레이로 이송하는 모션이 시작됩니다.*

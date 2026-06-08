@@ -4,6 +4,13 @@
 
 ---
 
+## 🎥 시연 영상 (Demo Video)
+- [시연 영상 보기 (Google Drive)](https://drive.google.com/file/d/your-lama-video-id/view?usp=sharing)
+  > [!TIP]
+  > 대용량 파일 업로드 제한으로 인해 고화질 시연 영상은 Google Drive 공유 링크를 통해 제공됩니다.
+
+---
+
 ## 📊 1. 시스템 설계 및 플로우 차트 (System Design & Flow Chart)
 
 ### 시스템 개요
@@ -81,7 +88,7 @@ flowchart TD
   - Doosan 로봇 API: `DR_init`, `DSR_ROBOT2`, `dsr_msgs2`, `dsr_control2`
 
 > [!NOTE]
-> 자세한 사항은 [requirements.txt](requirements.txt) 파일을 참고해 주세요.
+> 자세한 내용은 [requirements.txt](requirements.txt) 파일을 참고해 주세요.
 
 ---
 
@@ -93,7 +100,7 @@ flowchart TD
 로봇 센서 관제와 이상 감지를 수행하는 Flask 서버를 먼저 실행합니다.
 ```bash
 # HMI 디렉토리로 이동 후 Flask 실행
-cd C3\ src/Admin_Web_Page
+cd src/Admin_Web_Page
 python3 app.py
 ```
 *브라우저에서 `http://127.0.0.1:5000`으로 접속하여 모니터링 페이지를 확인할 수 있습니다.*
@@ -101,14 +108,14 @@ python3 app.py
 ### Step 2. 백엔드 작업 지시 UI (Streamlit) 구동
 자연어 음성 및 텍스트 명령 입력을 지원하는 유저 인터페이스를 구동합니다.
 ```bash
-cd C3\ src/Task_LLM
+cd src/Task_LLM
 streamlit run TaskLLM_Node.py
 ```
 
 ### Step 3. 메인 웹소켓 서버 및 코드 제어 노드 구동
 로봇 제어 PC(Code LLM 실행 PC)에서 메인 웹소켓 컨트롤 서버를 실행합니다.
 ```bash
-cd C3\ src/Code_LLM
+cd src/Code_LLM
 python3 CodeLLM_fine_Node.py
 ```
 

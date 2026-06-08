@@ -4,6 +4,13 @@
 
 ---
 
+## 🎥 시연 영상 (Demo Video)
+- [시연 영상 보기 (Google Drive)](https://drive.google.com/file/d/your-find-thief-video-id/view?usp=sharing)
+  > [!TIP]
+  > 대용량 파일 업로드 제한으로 인해 고화질 시연 영상은 Google Drive 공유 링크를 통해 제공됩니다.
+
+---
+
 ## 📊 1. 시스템 설계 및 플로우 차트 (System Design & Flow Chart)
 
 ### 시스템 개요

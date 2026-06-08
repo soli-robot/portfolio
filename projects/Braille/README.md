@@ -78,7 +78,7 @@ AMR 로봇의 구동 노드 및 모터 드라이버 통신을 시작합니다.
 source /opt/ros/humble/setup.bash
 
 # 주행 제어 스크립트 실행
-cd D-1_지능1_src/AMR
+cd src/AMR
 python3 real_final3.py
 ```
 
@@ -88,14 +88,14 @@ python3 real_final3.py
 source /opt/ros/humble/setup.bash
 
 # YOLOv8-seg 탐지 스크립트 실행
-cd D-1_지능1_src/Detection
+cd src/Detection
 python3 yolo_tt_result8.py
 ```
 
 ### Step 3. HMI 관제 모니터 대시보드 웹 서버 실행
 로봇의 운행 정보와 카메라 실시간 스트림 화면을 시각화하는 모니터링 대시보드 서버를 켭니다.
 ```bash
-cd D-1_지능1_src/System\ Monitor
+cd src/System\ Monitor
 python3 app.py
 ```
 *로컬 환경 브라우저에서 `http://127.0.0.1:5000`에 접속하여 실시간 웹 대시보드로 운행 상태를 관제합니다.*
