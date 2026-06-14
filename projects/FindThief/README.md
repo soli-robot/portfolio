@@ -76,15 +76,60 @@ flowchart TD
 
 멀티 로봇 협동 제어 및 비전 인식 과정에서 발생한 핵심 문제를 다음과 같이 해결했습니다.
 
-### 1. 칼만 필터(Kalman Filter)를 통한 타겟 좌표 흔들림 방지 (송종진 담당)
-- **문제 상황**: 로봇이 이동 중일 때 OAK-D 카메라의 뎁스 데이터가 크게 흔들려 도둑의 PointStamped 좌표(`/thief_position`)가 불안정하게 퍼블리시되는 현상이 발생. 이로 인해 추적 로봇의 Nav2 플래너가 경로를 계속 재탐색하며 제자리에서 회전하는 문제가 있었습니다.
-- **해결 방법**: **송종진**은 검출된 위치 좌표에 칼만 필터를 적용하여 노이즈를 평활화(Smoothing)하고, `pose_hold_time = 2.0s` 파라미터를 추가하여 도둑이 잠시 시야에서 사라지더라도 마지막 위치를 2초간 유지하여 안정적인 추적 벡터를 생성하도록 설계했습니다.
-- **결과**: 추적 로봇의 주행이 덜컹거리지 않고 부드러운 Pursuit Curve를 그리며 도둑을 추적할 수 있었습니다.
+### 1. Depth 픽셀 필터링 및 TF 좌표 변환 최적화를 통한 추적 안정성 확보 (송종진 담당)
+- **문제 상황**: 로봇 주행 중 진동으로 인해 OAK-D 카메라의 뎁스 데이터가 요동치며, 계산된 도둑의 `PointStamped` 좌표(`/thief_position`)가 불안정하게 퍼블리시되는 현상 발생. 이로 인해 Nav2 플래너가 계속 경로를 재탐색(Re-planning)하며 로봇이 제자리 회전하는 문제가 있었습니다.
+- **기술적 해결 및 코드 레벨 기여 (송종진)**: 
+  Depth 패치의 극단값을 걸러내는 미디언 필터 적용과 더불어, ROS2 `tf2_ros.Buffer`를 활용하여 카메라 좌표계(frame_id)에서 맵 좌표계('map')로의 TF 변환 시 동기화 및 타임아웃 예외 처리를 정교하게 구성했습니다. 또한 `pose_hold_time`을 적용해 타겟이 일시적으로 사라져도 이전 유효 좌표를 유지하도록 구현했습니다.
 
-### 2. 다중 로봇 간 충돌 방지 및 교착(Deadlock) 상태 해결
-- **문제 상황**: 두 대의 로봇이 동일한 도둑의 위치 토픽을 수신하여 좁은 복도에서 추적을 진행할 때, 서로 먼저 도달하려다 로봇끼리 충돌하거나 서로를 장애물로 인식해 멈춰버리는(Deadlock) 문제가 발생했습니다.
-- **해결 방법**: 로봇이 타겟 반경 `0.8m` 이내에 진입하면 목표 지점 갱신을 멈추고 포위 대기 상태로 전환하는 거리를 설정했습니다. 또한, 상위 관제 서버에서 `catch_thief_2` 등의 상태 플래그를 통해 두 로봇의 진입 동선이 겹치지 않도록 Interlock 제어 로직을 추가했습니다.
-- **결과**: 좁은 공간에서도 다중 로봇이 충돌 없이 역할을 분담하여 도둑을 앞뒤로 포위하는 협동 시나리오를 완성했습니다.
+  ```python
+  # 1. Depth 패치 노이즈 필터링 (Valid z-값 추출)
+  valid = patch[(patch > 200) & (patch < 5000)]
+  z = float(np.median(valid)) / 1000.0 # 튀는 픽셀 제거를 위한 Median 처리
+
+  # 2. Camera -> Map 좌표계 실시간 TF 변환 및 예외 처리
+  try:
+      tf_time = Time.from_msg(depth_stamp_msg)
+      transform = self.tf_buffer.lookup_transform(
+          'map', frame_id, tf_time, timeout=Duration(seconds=1.5)
+      )
+      return do_transform_point(pt_camera, transform)
+  except Exception as e:
+      # Timestamp 동기화 실패 시 Fallback 로직 
+      transform = self.tf_buffer.lookup_transform(
+          'map', frame_id, Time(), timeout=Duration(seconds=1.5)
+      )
+      return do_transform_point(pt_camera, transform)
+  ```
+- **결과**: 추적 로봇의 주행이 덜컹거리지 않고 부드러운 Pursuit Curve를 그리며 도둑을 안정적으로 추적할 수 있었습니다.
+
+### 2. 다중 로봇 간 충돌 방지 (Deadlock) 및 상호 배타적 인터락(Interlock) 제어
+- **문제 상황**: 2대의 로봇(Robot2, Robot8)이 동일한 도둑의 위치 토픽을 수신해 좁은 복도에서 동시 추적을 진행할 때, 먼저 타겟에 도달하려다 서로 충돌하거나 장애물로 인식해 멈춰버리는(Deadlock) 현상이 발생했습니다.
+- **기술적 해결 및 코드 레벨 기여 (송종진)**: 
+  비전 노드 단에서 ROS2 `std_msgs/Bool` 타입의 토픽(`/robot8/catch_thief_8`)을 구독(Subscribe)하여 상호 배타적인 **Interlock 상태 머신**을 설계했습니다. 상대 로봇이 이미 도둑 좌표를 산출 및 포위 중이면 내 쪽의 좌표 퍼블리시를 생략하고, 추적 Action 노드 단에서는 타겟 반경 `0.8m` 내 진입 시 Nav2 Goal 갱신을 멈추는 포위 대기 거리를 수학적으로 계산했습니다.
+
+  ```python
+  # [Vision Node] 멀티 로봇 동선 겹침 방지 (Interlock)
+  if self.catch_thief_8:
+      self.safe_warn("⛔ robot8이 먼저 도둑 추적 중 → 우리 쪽 좌표 계산 중단")
+      continue # 타겟 좌표 계산 생략 (교착 방지)
+  else:
+      self.safe_publish(self.catch_thief_2_pub, Bool(data=True)) # 선점 선언
+
+  # [Action Node] 타겟 반경 도달 시 포위 대기 (거리 기반 정지)
+  dx = tx - rx
+  dy = ty - ry
+  dist = math.hypot(dx, dy)
+
+  if dist <= CHASE_DISTANCE_M:  # CHASE_DISTANCE_M = 0.8m
+      self.get_logger().info(f'도둑 {CHASE_DISTANCE_M}m 이내. goal 갱신 중지')
+      return # 더 이상 접근하지 않고 포위 유지
+  
+  # 일정한 거리를 두고 추적할 수 있도록 유닛 벡터 기반 Goal 계산
+  ux, uy = dx / dist, dy / dist
+  goal_x = tx - ux * CHASE_DISTANCE_M
+  goal_y = ty - uy * CHASE_DISTANCE_M
+  ```
+- **결과**: 좁은 공간에서도 다중 로봇이 충돌 없이 역할을 분담하여 서로 거리를 유지한 채 도둑을 양쪽에서 포위하는 안정적인 협동 시나리오를 완성했습니다.
 
 ---
 

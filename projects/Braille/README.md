@@ -79,14 +79,44 @@ flowchart TD
 본 프로젝트 과정에서 발생한 핵심 기술적 이슈와 해결 과정입니다.
 
 ### 1. OAK-D 뎁스 센서 노이즈로 인한 조향각 불안정 문제 해결
-- **문제 상황**: 야외 및 다양한 조명 환경에서 OAK-D 뎁스 카메라의 노이즈가 발생하여, 계산된 점자 블록 중심 좌표가 튀는 현상(Jitter)이 발생. 이로 인해 로봇이 직진하지 못하고 좌우로 심하게 요동치며 주행하는 문제가 있었습니다.
-- **해결 방법**: **송종진**은 이 문제를 해결하기 위해 실시간 좌표 스트림에 미디언 필터(Median Filter)와 이동 평균(Moving Average) 알고리즘을 결합한 1D 필터 파이프라인을 도입했습니다.
-- **결과**: 노이즈 픽셀에 의한 급격한 좌표 튀김을 효과적으로 억제하여 로봇의 주행 안정성이 대폭 상승하였고, 부드러운 커브 및 직진 주행이 가능해졌습니다.
+- **문제 상황**: 야외 조명 및 반사율이 높은 보도 환경에서 OAK-D 뎁스 카메라의 Depth Map에 극단적인 노이즈 픽셀(Outlier)이 발생하여 계산된 3D 점자 블록 중심점 좌표가 프레임마다 심하게 튀는 현상(Jitter)이 나타났습니다.
+- **기술적 해결 및 코드 레벨 기여 (송종진)**: 
+  단순한 평균 필터로는 Impulse Noise를 잡을 수 없기 때문에, 뎁스 패치 추출 시 **비선형 미디언 필터(Median Filter)**로 Outlier를 1차 제거하고, 추출된 3D 좌표에 **지수 가중 이동 평균(EMA, Exponential Moving Average)** 필터를 2차로 적용하여 제어 신호의 Low-Pass 효과를 구현했습니다.
 
-### 2. 점자 블록 일시적 미탐지 시 탈선 방지 루프 (Dead Reckoning Backup Loop)
-- **문제 상황**: 코너를 돌거나 햇빛 반사로 인해 YOLO 모델이 순간적으로 점자 블록 프레임을 놓치는 경우(False Negative), 로봇이 제어 명령을 상실하여 경로를 이탈하거나 급정거하는 상황이 발생했습니다.
-- **해결 방법**: **송종진**은 추종 중이던 점자 블록의 벡터 방향성을 임시 메모리 버퍼에 저장하는 **추측 항법(Dead Reckoning) 백업 루프**를 설계했습니다. 점자 블록이 미탐지된 프레임이 일정 시간 동안 유지될 경우, 이전 벡터를 참조하여 저속으로 전진하며 블록을 다시 탐지하도록 유도했습니다.
-- **결과**: 경로가 끊긴 구간이나 코너링 시에도 시스템 탈선 없이 안정적으로 복귀하여 완주율 100%를 달성했습니다.
+  ```python
+  # Depth 패치에서 유효 픽셀 필터링 및 미디언 필터 적용
+  patch = depth[max(0, y-4):min(h, y+5), max(0, x-4):min(w, x+5)]
+  valid = patch[(patch > 200) & (patch < 5000)] # 0.2m ~ 5.0m 유효 범위
+  z = float(np.median(valid)) / 1000.0 # 극단값 제거 후 미디언 추출
+
+  # EMA 필터를 통한 조향각(Steering Angle) 평활화 로직
+  ALPHA = 0.3  # 가중치 (0 < ALPHA < 1)
+  current_steer = math.atan2(y_diff, x_diff)
+  smoothed_steer = (ALPHA * current_steer) + ((1 - ALPHA) * prev_steer)
+  prev_steer = smoothed_steer
+  ```
+- **결과**: 노이즈 픽셀에 의한 급격한 좌표 튀김을 효과적으로 억제하여 로봇의 주행 안정성이 대폭 상승하였고, 직진 및 곡선 주행 시 모터의 채터링(Chattering) 현상을 제거했습니다.
+
+### 2. 점자 블록 일시적 미탐지 시 추측 항법(Dead Reckoning) 탈선 방지 루프
+- **문제 상황**: 직각 코너나 강한 햇빛 반사 구간에서 YOLOv8-seg 모델이 순간적으로 점자 블록 프레임을 놓칠 경우(False Negative), 제어 루프가 `cmd_vel = 0` 명령을 내려 로봇이 경로 상에서 멈추거나 엉뚱한 방향으로 회전하는 상황이 발생했습니다.
+- **기술적 해결 및 코드 레벨 기여 (송종진)**: 
+  YOLO 탐지 결과를 ROS2 `message_filters`의 `ApproximateTimeSynchronizer`로 동기화 처리하되, 탐지 결과가 끊기는 `None` 상태가 발생하면 이전에 유지하던 선속도($v$)와 각속도($\omega$) 벡터를 버퍼에 저장해두고, `loss_counter` 임계치 내에서는 해당 벡터 방향으로 저속 주행(Dead Reckoning)하도록 제어 백업 루프를 구현했습니다.
+
+  ```python
+  if target_block is None:
+      loss_counter += 1
+      if loss_counter < MAX_LOSS_FRAMES:
+          # 탐지 실패 시 이전 주행 벡터(버퍼)를 재활용하여 저속 전진
+          cmd_vel.linear.x = prev_linear_x * 0.7  # 속도 30% 감속
+          cmd_vel.angular.z = prev_angular_z * 0.5 # 회전 각속도 50% 감속
+          self.safe_publish(cmd_pub, cmd_vel)
+      else:
+          # 임계치 초과 시 비상 정지
+          self.stop_robot()
+  else:
+      loss_counter = 0 # 정상 탐지 시 카운터 초기화
+  ```
+- **결과**: 코너링이나 센서 사각지대에서도 시스템 탈선 없이 안정적으로 복귀 및 재탐지를 유도하여 자율주행 완주율 100%를 달성했습니다.
 
 ---
 
