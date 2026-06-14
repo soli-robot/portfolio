@@ -239,22 +239,29 @@
                 </div>
             </div>
 
-            <!-- Project 4: Isaac Workspace -->
+            <!-- Project 4: Chunsik Mars (디지털 트윈 로봇 자동화 시뮬레이션) -->
             <div class="project-card scroll-reveal">
                 <div class="project-img-placeholder icon-isaac">
-                    <i data-lucide="cuboid" class="project-placeholder-icon"></i>
+                    <i data-lucide="rocket" class="project-placeholder-icon"></i>
                 </div>
                 <div class="project-content">
                     <div class="project-tags">
                         <span>NVIDIA Isaac Sim</span>
-                        <span>Isaac Gym</span>
-                        <span>Reinforcement Learning</span>
+                        <span>DeepSeek-R1 & Qwen-Coder</span>
+                        <span>ROS2 Nav2</span>
+                        <span>RL (PPO)</span>
                     </div>
-                    <h3>NVIDIA Isaac Sim 로봇 시뮬레이션 환경</h3>
-                    <p>물리 엔진(PhysX) 기반 하드웨어 인더스트리얼 액추에이터 및 매니퓰레이터 시뮬레이션을 구현하고, 환경 맵을 구축하여 실제 현장 도입 전 다중 시나리오를 가상 테스트할 수 있는 개발 환경 리포지토리입니다.</p>
+                    <h3>디지털 트윈 기반 로봇 자동화 시뮬레이션</h3>
+                    <p><strong>"춘식이 화성가즈아"</strong>: 화성 탐사 시나리오에서 VLM(Florence-2) 기반 시각 인지와 DeepSeek-R1/Qwen-Coder의 3-PC 분산형 VLA 에이전트 아키텍처를 결합해 모바일 로봇(Carter)과 매니퓰레이터(M0609)의 물류 이송 임무를 디지털 트윈으로 구현했습니다. <strong>송종진(나)</strong>은 Qwen-Coder 연동 및 동작 스케줄링, ROS2 Nav2 험지 주행 파라미터 튜닝을 담당했으며, 특히 주행 중 전복 시 IMU 센서 데이터 감지 및 PyTorch JIT 기립 정책 구동, 기립 후 OpenCV LiDAR 템플릿 매칭 기반 전역 위치 자가 복구 엔진을 개발하여 시스템의 자율 생존성을 극대화했습니다.</p>
                     <div class="project-links">
-                        <a href="./projects/Isaac/README.md" class="btn btn-secondary btn-sm" id="btnIsaacReadme">
-                            <i data-lucide="file-question"></i> 작업 가이드 보기
+                        <button class="btn btn-secondary btn-sm play-video-btn" data-video="./projects/Isaac/isaac_video.mp4" data-title="디지털 트윈 로봇 시뮬레이션 시연">
+                            <i data-lucide="play-circle"></i> 시연 영상 
+                        </button>
+                        <a href="./projects/Isaac/pdf/Presentation.pdf" class="btn btn-secondary btn-sm" target="_blank">
+                            <i data-lucide="file-text"></i> 발표 자료 (PDF)
+                        </a>
+                        <a href="./projects/Isaac/README.md" class="btn btn-secondary btn-sm">
+                            <i data-lucide="file-question"></i> 상세 설명 (README)
                         </a>
                     </div>
                 </div>
