@@ -15,7 +15,7 @@
 
 ---
 
-## 👥 2. 팀 구성 및 역할 (Team C-3)
+## 👥 2. 팀 구성 및 역할 (Team R&R)
 | 이름 | 역할 | 담당 업무 |
 | :---: | :---: | :--- |
 | **홍성욱** | 조장 | 프로젝트 총괄, Firebase DB 연동, AI 예지 보전 파이프라인 구축(1D-CNN+LSTM) |
@@ -34,7 +34,7 @@
 
 ---
 
-## 📌 4. 시스템 핵심 아키텍처 (Integrated Pipeline)
+## 📌 4. 시스템 핵심 아키텍처 (Architecture & Pipeline)
 본 시스템은 단일 LLM의 연산 부하 문제를 해결하고 물리적 인프라와의 연동성을 높이기 위해 전체 구조를 유기적으로 연결했습니다.
 
 ```mermaid
@@ -53,7 +53,7 @@ flowchart TD
 
 ---
 
-## 🛠 5. Tech Stack (기술 스택)
+## 🛠️ 5. 기술 스택 (Tech Stack)
 * **운영체제 및 환경:** Ubuntu 24.04 LTS, ROS2 (Jazzy / Humble 호환), Doosan Robotics DRL, Python 3.10
 * **하드웨어:** Doosan M0609 Robot Arm, OnRobot RG2 Gripper, Intel RealSense Camera, RTX 5060/4060 PC
 * **AI & 비전 모델:** Ollama (Llama 3, Qwen 2.5-Coder), Faster-Whisper, YOLO26n-seg v5, MediaPipe, PyTorch
@@ -62,7 +62,7 @@ flowchart TD
 
 ---
 
-## 🚀 6. 주요 성과 및 트러블슈팅 (Troubleshooting)
+## 💡 6. 트러블슈팅 및 주요 성과 (Troubleshooting & Achievements)
 * **코더 LLM 실시간성(Latency) 대폭 개선:** 1만 자 이상의 한글 프롬프트를 영문 기반 2,020자로 경량화하고 핵심 로직만 생성하도록 역할을 축소하여 코드 생성 시간을 60초에서 10초(약 83% 감소)로 획기적으로 단축했습니다.
 * **YOLO 좌표 오차 및 충돌 위험(Z-Offset) 해결:** 정적 스캔 방식(10초 누적)으로 좌표 정밀도를 확보하고, JSON 데이터 송신 시 안전 마진(`z_offset`)을 명시하여 완벽한 'ㄷ'자 무빙(충돌 방지)을 구현했습니다.
 * **비전 인식 실패 대비 제스처 백업 구현:** 카메라가 물체를 인식하지 못하는 예외 상황을 대비해, 사용자의 손가락 벡터가 가리키는 방향으로 로봇이 시선을 돌리는 록온(Lock-on) 수동 제어 모듈을 결합했습니다.
@@ -70,7 +70,7 @@ flowchart TD
 
 ---
 
-## ⚙️ 7. 실행 순서 및 환경 구축 (How to Run)
+## 🚀 7. 실행 방법 및 환경 구축 (How to Run)
 🚀 시스템 환경 구축 및 실행 가이드 (How to Run)
 본 프로젝트를 로컬 에지 PC 환경에서 에러 없이 구동하기 위한 통합 가이드라인입니다.
 

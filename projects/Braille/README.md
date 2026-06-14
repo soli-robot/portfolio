@@ -1,6 +1,5 @@
 # 🦯 OAK-D and YOLOv8-seg based Braille Block Tracking AMR
-
-OAK-D 스테레오 카메라와 YOLOv8-seg 인공지능 모델을 융합하여 실시간으로 보도의 점자 블록을 인식하고, 이를 기반으로 시각 장애인을 안전하게 안내할 수 있도록 자율주행 모바일 로봇(AMR)의 경로를 계획하며, 전체 시스템 상태를 실시간 모니터링하는 플랫폼입니다.
+> **시각 장애인 안내용 자율주행 AMR 및 실시간 시스템 관제 플랫폼**
 
 ---
 
@@ -9,7 +8,12 @@ OAK-D 스테레오 카메라와 YOLOv8-seg 인공지능 모델을 융합하여 �
 
 ---
 
-## 👥 팀원 및 역할 (Team R&R)
+## 📖 1. 프로젝트 개요 (Introduction)
+OAK-D 스테레오 카메라와 YOLOv8-seg 인공지능 모델을 융합하여 실시간으로 보도의 점자 블록을 인식하고, 이를 기반으로 시각 장애인을 안전하게 안내할 수 있도록 자율주행 모바일 로봇(AMR)의 경로를 계획하며, 전체 시스템 상태를 실시간 모니터링하는 플랫폼입니다.
+
+---
+
+## 👥 2. 팀 구성 및 역할 (Team R&R)
 
 본 프로젝트는 총 5명의 팀원으로 구성되어 진행되었습니다.
 
@@ -23,7 +27,7 @@ OAK-D 스테레오 카메라와 YOLOv8-seg 인공지능 모델을 융합하여 �
 
 ---
 
-## ✨ 핵심 기능 (Key Features)
+## 🎯 3. 주요 기능 (Key Features)
 1. **실시간 점자 블록 세그멘테이션**: YOLOv8-seg 모델을 사용하여 카메라 영상 내 점자 블록 영역을 픽셀 단위로 정확하게 검출합니다.
 2. **3D 좌표 변환 및 경로 추종**: 추출된 2D 마스크 영역과 OAK-D 카메라의 Depth 맵을 매핑하여 실제 3D 공간상의 조향각을 계산합니다.
 3. **자율주행 제어**: 계산된 조향각을 바탕으로 ROS2 환경에서 모터 컨트롤러에 `cmd_vel` 메시지를 퍼블리시하여 로봇을 부드럽게 주행시킵니다.
@@ -31,7 +35,7 @@ OAK-D 스테레오 카메라와 YOLOv8-seg 인공지능 모델을 융합하여 �
 
 ---
 
-## ⚙️ 아키텍처 및 파이프라인 (Architecture & Pipeline)
+## 📌 4. 시스템 핵심 아키텍처 (Architecture & Pipeline)
 
 ```mermaid
 flowchart TD
@@ -57,7 +61,7 @@ flowchart TD
 
 ---
 
-## 🛠️ 기술 스택 (Tech Stack)
+## 🛠️ 5. 기술 스택 (Tech Stack)
 
 ### Software & Frameworks
 - **OS**: Ubuntu 22.04 LTS
@@ -74,7 +78,7 @@ flowchart TD
 
 ---
 
-## 💡 트러블슈팅 및 주요 성과 (Troubleshooting & Achievements)
+## 💡 6. 트러블슈팅 및 주요 성과 (Troubleshooting & Achievements)
 
 본 프로젝트 과정에서 발생한 핵심 기술적 이슈와 해결 과정입니다.
 
@@ -120,7 +124,7 @@ flowchart TD
 
 ---
 
-## 🚀 실행 방법 (Execution Sequence)
+## 🚀 7. 실행 방법 및 환경 구축 (How to Run)
 
 원활한 구동을 위해 다음 순서로 터미널을 열고 스크립트를 각각 구동합니다.
 

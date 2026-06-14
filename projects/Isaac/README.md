@@ -18,7 +18,7 @@
 
 ---
 
-## 👥 2. 팀 구성 및 역할 (Team C-3)
+## 👥 2. 팀 구성 및 역할 (Team R&R)
 | 이름 | 역할 | 담당 업무 및 상세 |
 | :---: | :---: | :--- |
 | **홍성욱** | 조장 | **시스템 통합 및 맵 제작**<br>- 3-PC 분산 처리를 위한 실시간 웹소켓(WebSocket) 통신 아키텍처 설계<br>- World Creator 및 생성형 AI 텍스처를 활용한 고정밀 가상 화성 맵 환경 메쉬 및 렌더링 구축 |
@@ -38,7 +38,7 @@
 
 ---
 
-## 📌 4. 시스템 핵심 아키텍처 (Integrated Pipeline)
+## 📌 4. 시스템 핵심 아키텍처 (Architecture & Pipeline)
 본 시스템은 물리 엔진, 추론 모델, 제어 로직을 물리적으로 분할한 분산 아키텍처로 구현되었습니다.
 
 ```mermaid
@@ -69,7 +69,7 @@ flowchart TD
 
 ---
 
-## 💻 5. 주요 소스 코드 및 모듈 구조 (Modules Detail)
+### 주요 소스 코드 및 모듈 구조 (Modules Detail)
 
 ### 1. `code_llm_module8.py` (비동기 VLA 오케스트레이터)
 이 스크립트는 PC2(시뮬레이터 호스트) 상에서 동작하며, 비전 데이터 송신과 작업 명령 수신을 제어하는 오케스트레이터입니다.
@@ -101,7 +101,7 @@ Doosan M0609 매니퓰레이터의 Joint State 피드백과 Tensor API를 연동
 
 ---
 
-## 🛠 6. Tech Stack (기술 스택)
+## 🛠️ 5. 기술 스택 (Tech Stack)
 * **OS & Middleware:** Ubuntu 22.04 LTS, ROS2 Humble
 * **Simulator:** NVIDIA Omniverse Isaac Sim 2023.1.1, Isaac Gym (PhysX Engine 기반)
 * **AI & VLA Models:** Microsoft Florence-2-base, DeepSeek-R1 (Nous Hermes 2.5), Qwen-2.5-Coder (7B/30B)
@@ -111,7 +111,7 @@ Doosan M0609 매니퓰레이터의 Joint State 피드백과 Tensor API를 연동
 
 ---
 
-## 🚀 7. 주요 성과 및 트러블슈팅 (Troubleshooting)
+## 💡 6. 트러블슈팅 및 주요 성과 (Troubleshooting & Achievements)
 
 ### 1. ROS2 Nav2 기반 Carter 모바일 로봇 주행 오차 개선 (송종진 주도)
 * **문제점**: 험하고 굴곡진 화성 지형 특성상 Carter 모바일 로봇 주행 시 가상 라이다 스캔 데이터와 기존 2D Costmap 간의 불일치가 빈번하여 목표 정밀 도달에 실패하거나 Y축으로 탈조하는 현상이 발생했습니다.
@@ -131,3 +131,9 @@ Doosan M0609 매니퓰레이터의 Joint State 피드백과 Tensor API를 연동
   - 기립 완료 판정이 나는 순간, 로봇의 360도 라이다 스캔 데이터를 받아 OpenCV 2D 바이너리 이미지로 드로잉했습니다.
   - 전역 월드 맵의 이진 맵 이미지(`warehouse.png`)를 0도부터 360도까지 5도 간격으로 회전시킨 템플릿 이미지들과 `cv2.matchTemplate` 연산을 병렬 처리하여 가장 높은 정밀도(Correlation Value)를 가지는 전역 X, Y 및 회전각(Yaw)을 검출했습니다.
   - 복구된 좌표를 `/initialpose`로 즉시 퍼블리시하여 AMCL 위치 추정을 자동 복원시켰고, 끊김 없는 자율 복구 주행(`resume_navigation_directly`)을 구현하는 데 성공했습니다.
+
+---
+
+## 🚀 7. 실행 방법 및 환경 구축 (How to Run)
+- 본 프로젝트는 다중 PC 환경(분산 노드)에서 구동되도록 설계되었습니다.
+- Omniverse Isaac Sim 및 Nav2 런타임 환경 등 상세한 실행 환경 및 명령어는 내부 위키를 참조해 주세요.
