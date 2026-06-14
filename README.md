@@ -1,25 +1,53 @@
-# AI & Robotics Developer Portfolio
+# 👨‍💻 송종진 (Song Jongjin) | AI & Robotics Software Engineer
 
-인공지능(AI)과 로봇 제어(Robotics) 분야의 다양한 프로젝트를 통합 관리하고 소개하는 포트폴리오 저장소입니다. 로봇 팔 제어, 자율주행 모바일 로봇(AMR) 경로 계획, 컴퓨터 비전 객체 인식 및 LLM 기반의 에이전트 시스템까지, 하드웨어와 AI 소프트웨어를 통합하는 역량을 포괄적으로 담고 있습니다.
+> **"하드웨어의 한계를 소프트웨어 지능으로 극복하는 로보틱스 엔지니어"**
+
+인공지능(AI) 모델과 하드웨어 제어 로직을 결합하여, 불확실성이 높은 실제 환경에서도 안정적으로 구동하는 자율주행 및 협동 로봇 시스템을 설계합니다. LLM/VLM 기반의 에이전트 시스템(Agentic System) 통합부터 ROS2 Navigation2 자율주행 최적화, 다중 로봇 간 교착(Deadlock) 방지 알고리즘 설계까지 풀스택 로보틱스 엔지니어링 역량을 보유하고 있습니다.
+
+[![Tech Stack](https://skillicons.dev/icons?i=python,ros,ubuntu,cpp,pytorch,flask,docker,github)](https://skillicons.dev)
 
 ---
 
-## 📂 저장소 프로젝트 구성
+## 🎯 핵심 역량 (Core Competencies)
 
-이 포트폴리오 저장소는 아래와 같이 4개의 핵심 프로젝트로 구성되어 있습니다. 각 프로젝트 폴더 내부의 `README.md` 파일에서 각 시스템의 상세 아키텍처 및 흐름도(Flowchart)를 확인하실 수 있습니다.
+- **Autonomous Navigation & Control**: ROS2 Nav2 기반 자율주행(AMR) 파라미터 최적화, 추측 항법(Dead Reckoning) 백업 제어, 다중 로봇(Multi-Robot) 충돌 방지 및 포위 기동 알고리즘 설계
+- **AI Agent & LLM Integration**: VLA(Vision-Language-Action) 아키텍처 구축, DeepSeek/Qwen/Llama3 기반 작업 지시 파이프라인 최적화, 분산 노드 WebSocket 통신 구현
+- **Sensor Fusion & Error Recovery**: OAK-D 뎁스 카메라 노이즈 필터링(Median/EMA), IMU 데이터 활용 전도 감지 및 기립 자세 복구, LiDAR 스캔 - 전역 맵 간 OpenCV 매칭을 통한 자이로 오차 극복
+- **System Integration & Backend**: Flask 기반 로봇 관제 HMI 서버 구축, SQLite/Firebase 데이터 로깅 및 예지보전 대시보드 연동
 
-### 1. [AI Collaborative Robot Assistant - LAMA (춘식아 해줘)](projects/Lama/)
-* **개요**: 사용자 자연어 명령을 분석하는 Llama 3(Task LLM)와 이를 수행할 제어 코드를 생성하는 Qwen 2.5-Coder(Code LLM)를 분리한 3단계 분업 에이전트 아키텍처입니다. 비전 좌표 보정 및 예지보전 시스템이 통합되었습니다.
-* **주요 기술**: Llama 3, Qwen 2.5-Coder, ROS2, MediaPipe, RealSense, 1D-CNN + LSTM, Python, Flask, Streamlit.
+---
 
-### 2. [Braille Recognition & AMR Control](projects/Braille/)
-* **개요**: OAK-D 카메라와 YOLOv8-seg 기술을 사용해 실시간으로 점자 블록을 탐지하고 자율주행 모바일 로봇(AMR)을 주행 및 모니터링하는 시스템입니다.
-* **주요 기술**: YOLOv8-seg, OAK-D, Python, SQLite, Flask, ROS2.
+## 🚀 포트폴리오 프로젝트 (Portfolio Projects)
 
-### 3. [Museum Security Guard (박살팀)](projects/FindThief/)
-* **개요**: 박물관 내 다중 카메라 채널 입력 스트림을 실시간 분석하여 비인가 구역 침입자 및 이상 행동을 실시간으로 자동 감지하고 위치를 추적하는 보안 시스템입니다.
-* **주요 기술**: PyTorch, Object Detection, Python, ROS2, OpenCV.
+본 저장소는 시스템의 아키텍처부터 하위 노드 제어까지 직접 구현한 4가지 핵심 프로젝트를 포함하고 있습니다. 각 제목을 클릭하면 상세한 시스템 파이프라인과 트러블슈팅(문제 해결) 기록을 확인하실 수 있습니다.
 
-### 4. [NVIDIA Isaac Sim Robot Workspace](projects/Isaac/)
-* **개요**: 물리 엔진 기반 시뮬레이터 상에 로봇 매니퓰레이터 및 공장 환경을 모델링하고, 강화학습 및 가상 검증을 수행할 수 있도록 구축된 가상 환경 워크스페이스입니다.
-* **주요 기술**: NVIDIA Isaac Sim, Isaac Gym, PhysX, Python, ROS2.
+### 1. 🤖 [춘식아 해줘 - Semantic AI 기반 자율 협동 로봇 어시스턴트](projects/Lama/)
+**"단순 반복을 넘어, 자연어 명령을 스스로 기획하고 코드로 변환하는 Local AI 파트너"**
+- **역할 및 기여**: 코더 LLM(Qwen 2.5-Coder) 프롬프트 최적화, 파이썬 기반 로봇 제어 API 템플릿 설계
+- **기술 스택**: Llama 3, Qwen 2.5-Coder, ROS2, Python, Flask, Modbus TCP
+- **주요 성과**: 1만 자 이상의 프롬프트를 2천 자 수준으로 경량화하여 **코드 생성 Latency를 60초에서 10초로 대폭 단축(83% 개선)**.
+
+### 2. 🪐 [춘식이 화성가즈아 - 디지털 트윈 기반 로봇 자동화 시뮬레이션 시스템](projects/Isaac/)
+**"Florence-2 / DeepSeek-R1 분산형 VLA 기반 로봇 에이전트 및 자가 복구 생존 시스템"**
+- **역할 및 기여**: ROS2 Nav2 자율주행 최적화, IMU 기반 전도 감지 및 기립 제어, OpenCV LiDAR 매칭 자가 복구 루틴 개발
+- **기술 스택**: NVIDIA Isaac Sim, DeepSeek-R1, Florence-2, ROS2 Nav2, OpenCV, PyTorch
+- **주요 성과**: 화성 험지에서 모바일 로봇 전복 시, IMU로 감지 후 로봇 팔 반동으로 스스로 기립. 직후 라이다 스캔과 전역 맵 매칭을 통해 **자이로 위치 오차를 강제 보정하여 자율주행 복구율 100% 달성**.
+
+### 3. 🦯 [Braille Block Tracking AMR - 시각 장애인 안내 자율주행 로봇](projects/Braille/)
+**"OAK-D 스테레오 카메라와 YOLOv8-seg를 융합한 점자 블록 실시간 경로 추종 시스템"**
+- **역할 및 기여**: OAK-D 3D 공간 좌표 변환, 센서 노이즈 필터링, AMR 주행 및 조향 알고리즘 설계
+- **기술 스택**: YOLOv8-seg, OAK-D, ROS2, Python, OpenCV
+- **주요 성과**: 뎁스 센서의 극단적 노이즈를 미디언 및 EMA 필터로 억제해 모터 채터링 제거. 점자 블록 미탐지 시 이전 벡터 버퍼를 활용한 **추측 항법(Dead Reckoning) 백업 루프를 도입해 코너링 탈선 완벽 방지**.
+
+### 4. 🚨 [Museum is Alive - 박물관 보안 관제 및 로봇 다중 추적 시스템](projects/FindThief/)
+**"다중 CCTV 침입자 탐지 및 2대의 TurtleBot4 협동 자율 포위망 시스템"**
+- **역할 및 기여**: YOLO 객체 탐지, OAK-D 뎁스 좌표 -> 글로벌 Map TF 변환, 다중 로봇 교착 상태 방지 인터락 설계
+- **기술 스택**: YOLOv8, ROS2 Nav2, Flask, OpenCV, TurtleBot4
+- **주요 성과**: 타임스탬프 비동기화 및 뎁스 노이즈를 처리하는 TF 변환 로직 최적화. 2대의 추적 로봇이 좁은 복도에서 교착(Deadlock)되지 않도록 상호 배타적 선점 및 `0.8m` 타겟 대기 거리를 적용해 **성공적인 양방향 포위 기동 구현**.
+
+---
+
+## 📬 Contact & Links
+- **GitHub**: [github.com/soli-robot](https://github.com/soli-robot)
+
+> *“각 프로젝트 폴더 내부의 `README.md`에서 시스템의 한계점과 안정성을 코드 레벨에서 치열하게 고민하고 해결해낸 **상세한 트러블슈팅(Troubleshooting)** 기록을 직접 확인하실 수 있습니다.”*
