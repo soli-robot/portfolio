@@ -10,7 +10,7 @@
 
 ## 🎯 핵심 역량 (Core Competencies)
 
-- **Autonomous Navigation & Control**: ROS2 Nav2 기반 자율주행(AMR) 파라미터 최적화, 추측 항법(Dead Reckoning) 백업 제어, 다중 로봇(Multi-Robot) 충돌 방지 및 포위 기동 알고리즘 설계
+- **Autonomous Navigation & Control**: ROS2 Nav2 기반 자율주행(AMR) 파라미터 최적화, 협동로봇(Cobot) 순차 액션 및 파지 센서 제어, 다중 로봇(Multi-Robot) 충돌 방지 및 포위 기동 알고리즘 설계
 - **AI Agent & LLM Integration**: VLA(Vision-Language-Action) 아키텍처 구축, DeepSeek/Qwen/Llama3 기반 작업 지시 파이프라인 최적화, 분산 노드 WebSocket 통신 구현
 - **Sensor Fusion & Error Recovery**: OAK-D 뎁스 카메라 노이즈 필터링(Median/EMA), IMU 데이터 활용 전도 감지 및 기립 자세 복구, LiDAR 스캔 - 전역 맵 간 OpenCV 매칭을 통한 자이로 오차 극복
 - **System Integration & Backend**: Flask 기반 로봇 관제 HMI 서버 구축, SQLite/Firebase 데이터 로깅 및 예지보전 대시보드 연동
@@ -33,11 +33,11 @@
 - **기술 스택**: NVIDIA Isaac Sim, DeepSeek-R1, Florence-2, ROS2 Nav2, OpenCV, PyTorch
 - **주요 성과**: 화성 험지에서 모바일 로봇 전복 시, IMU로 감지 후 로봇 팔 반동으로 스스로 기립. 직후 라이다 스캔과 전역 맵 매칭을 통해 **자이로 위치 오차를 강제 보정하여 자율주행 복구율 100% 달성**.
 
-### 3. 🦯 [Braille Block Tracking AMR - 시각 장애인 안내 자율주행 로봇](projects/Braille/)
-**"OAK-D 스테레오 카메라와 YOLOv8-seg를 융합한 점자 블록 실시간 경로 추종 시스템"**
-- **역할 및 기여**: OAK-D 3D 공간 좌표 변환, 센서 노이즈 필터링, AMR 주행 및 조향 알고리즘 설계
-- **기술 스택**: YOLOv8-seg, OAK-D, ROS2, Python, OpenCV
-- **주요 성과**: 뎁스 센서의 극단적 노이즈를 미디언 및 EMA 필터로 억제해 모터 채터링 제거. 점자 블록 미탐지 시 이전 벡터 버퍼를 활용한 **추측 항법(Dead Reckoning) 백업 루프를 도입해 코너링 탈선 완벽 방지**.
+### 3. 🖨️ [FreshDot - 협동로봇 기반 점자 명함 제작 시스템](projects/Braille/)
+**"두산 협동로봇(m0609)과 비전 검증을 융합한 점자 명함 자동화 플랫폼"**
+- **역할 및 기여**: ROS 2 액션 클라이언트/서버 로직 통합 제어, OpenCV 기반 점자 윤곽선(Contour) 검출 및 타각 품질 검증 서버 구축
+- **기술 스택**: Doosan Cobot(m0609), ROS 2, OpenCV, Flask, Firebase
+- **주요 성과**: 종이 미끄러짐으로 인한 타각 오류를 방지하고자 파지 센서 상태 머신(State Machine)을 도입해 동작 신뢰성 확보. 브라우저에서 전송된 명함 사진을 OpenCV로 분석해 좌우 반전 및 ROI를 자동 교정하여 **최종 점자 검증 정확도를 95% 이상으로 대폭 상향**.
 
 ### 4. 🚨 [Museum is Alive - 박물관 보안 관제 및 로봇 다중 추적 시스템](projects/FindThief/)
 **"다중 CCTV 침입자 탐지 및 2대의 TurtleBot4 협동 자율 포위망 시스템"**
