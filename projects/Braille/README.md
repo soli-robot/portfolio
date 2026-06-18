@@ -20,10 +20,10 @@
 | 이름 | 역할 | 담당 업무 |
 | :---: | :---: | :--- |
 | **송종진** | 로봇/비전 | **협동로봇 액션 서버 설계 및 OpenCV 점자 검증 알고리즘 개발**<br>- `grab_paper`, `punch_braille`, `stamp` ROS 2 액션 클라이언트/서버 로직 통합<br>- OpenCV 기반 점자 윤곽선(Contour) 검출 및 한글 점자표 매칭 검증 서버 구축 |
-| **팀원 1** | 팀장 | 프로젝트 총괄, 시스템 아키텍처 설계, Firebase Realtime Database 연동 |
-| **팀원 2** | 프론트엔드 | 사용자 주문용 웹 UI(Vue/React) 제작, 웹캠 브라우저 스트리밍 기능 구현 |
-| **팀원 3** | 하드웨어 | 점자 타각 치구 및 명함 거치대 3D 모델링, 그리퍼(GripperDA_v1) 세팅 |
-| **팀원 4** | 백엔드 | Flask 기반 OpenCV 브릿지 서버 구축 (`/validate/image` API 연동) |
+| **김지홍**** | 백업 서버 구축 | 프로젝트 총괄, 시스템 아키텍처 설계, Firebase Realtime Database 연동 |
+| **김현진** | 프론트엔드 | 사용자 주문용 웹 UI(Vue/React) 제작, 웹캠 브라우저 스트리밍 기능 구현 |
+| **차송근** | 하드웨어 | 점자 타각 치구 및 명함 거치대 3D 모델링, 그리퍼(GripperDA_v1) 세팅 |
+| **민수현** | 백엔드 | Flask 기반 OpenCV 브릿지 서버 구축 (`/validate/image` API 연동) |
 
 ---
 
