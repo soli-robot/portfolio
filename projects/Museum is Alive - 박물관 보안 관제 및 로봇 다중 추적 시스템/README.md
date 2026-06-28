@@ -1,4 +1,4 @@
-# 🚨 Museum is Alive
+# 🚨 Museum is Alive - 박물관 보안 관제 및 로봇 다중 추적 시스템
 > **다중 로봇 보안 관제 및 침입자 탐지 시스템**
 
 ---
@@ -149,6 +149,11 @@ flowchart TD
   <img src="./images/yolo_report/1D2hD69pqpiJz46MRI_EbiqQKaTmJ1Jez.png" width="32%">
   <img src="./images/yolo_report/1nihinxsXykcSfIQs6toQ_JcZQlOoG7ws.png" width="32%">
   <img src="./images/yolo_report/11ecH4UBBeattow5EV1KHSsLyBO6y5nn6.png" width="32%">
+</div>
+
+#### 📊 최상위 3개 모델 비교 분석 차트 (Model 7 vs 8 vs 9)
+<div align="center">
+  <img src="./images/yolo_report/model789_comparison.png" width="100%">
 </div>
 
 ---

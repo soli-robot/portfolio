@@ -55,7 +55,7 @@ flowchart TD
 sudo apt-get update
 sudo apt-get install -y python3-venv python3-pip portaudio19-dev
 
-# Ollama 플랫폼 설치
+# 🤖 춘식아 해줘 - Semantic AI 기반 자율 협동 로봇 어시스턴트
 curl -fsSL https://ollama.com/install.sh | sh
 
 # [Task_LLM PC] 작업 지시용 Llama 3 다운로드
