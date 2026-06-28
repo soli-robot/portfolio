@@ -4,7 +4,8 @@
 ---
 
 ## 🎥 시연 영상 (Demo Video)
-- [시연 영상 보기](./isaac_video.mp4) (로컬 비디오)
+<video src="https://github.com/soli-robot/portfolio/raw/main/projects/Isaac/isaac_video_compressed.mp4" controls="controls" width="100%"></video>
+
 - [발표 자료 다운로드 (PDF)](./pdf/Presentation.pdf)
 
 ---
