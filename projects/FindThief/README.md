@@ -135,6 +135,22 @@ flowchart TD
   ```
 - **결과**: 좁은 공간에서도 다중 로봇이 충돌 없이 역할을 분담하여 서로 거리를 유지한 채 도둑을 양쪽에서 포위하는 안정적인 협동 시나리오를 완성했습니다.
 
+### 3. 실시간 관제를 위한 최적의 YOLO 아키텍처 발굴 및 선정
+- **문제 상황**: 다중 로봇이 실시간으로 침입자를 쫓기 위해서는 비전 모델의 정확도(미탐 방지)뿐만 아니라 초당 프레임(FPS) 처리가 병목이 되지 않아야 하며, 타이트한 바운딩 박스를 통해 정확한 좌표 변환이 필요했습니다.
+- **기술적 해결 및 모델 실험 (송종진)**: 
+  YOLO 아키텍처(v8, v10, v26)와 Batch Size(8, 16, 32)를 교차 조합하여 **총 9개의 시나리오**로 객체 탐지 모델 실험 평가를 진행했습니다. mAP50, F1-Score, F1-Confidence, Inference Time, Box Loss 등의 지표를 입체적으로 분석했습니다.
+- **결과 (Model 7 선정)**: 실험 결과, **YOLOv8 / Batch 8 (Model 7)** 모델을 최종 배포용으로 선정했습니다.
+  - **최고 정확도 및 안정성**: 전체 1위의 mAP50(`0.9944`) 및 완벽에 가까운 최고 F1-Score(`0.9951`)를 달성해 미탐을 최소화했습니다.
+  - **정교한 위치 추정**: Box Loss가 `1.079`로 가장 낮아 객체에 빈틈없이 타이트한 Bounding Box를 생성하여 정확한 중심 픽셀 뎁스 추출이 가능했습니다.
+  - **실시간 처리**: 추론 속도 `10.30ms` (약 97 FPS)로 다중 로봇 관제에 전혀 병목이 없는 실시간성을 검증했습니다.
+
+#### 🔍 최적 모델 (Model 7) 시각화 결과
+<div align="center">
+  <img src="./images/yolo_report/1D2hD69pqpiJz46MRI_EbiqQKaTmJ1Jez.png" width="32%">
+  <img src="./images/yolo_report/1nihinxsXykcSfIQs6toQ_JcZQlOoG7ws.png" width="32%">
+  <img src="./images/yolo_report/11ecH4UBBeattow5EV1KHSsLyBO6y5nn6.png" width="32%">
+</div>
+
 ---
 
 ## 🚀 7. 실행 방법 및 환경 구축 (How to Run)
