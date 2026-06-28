@@ -1,10 +1,10 @@
-# 🤖 춘식아 해줘 - Semantic AI 기반 자율 협동 로봇 어시스턴트
+﻿# 🤖 춘식아 해줘 - Semantic AI 기반 자율 협동 로봇 어시스턴트
 > **자율 궤적 플래닝을 위한 VLA 기반의 협동 로봇 제어: Semantic AI 에이전트 분업 아키텍처**
 
 ---
 
 ## 🎥 시연 영상 (Demo Video)
-- [시연 영상 보기](https://github.com/soli-robot/portfolio/releases/download/v1.0.0-videos/lama_video.mp4)
+- [원본 고화질 시연 영상 보기/다운로드 (Google Drive)](https://drive.google.com/file/d/1IV9xJbBk6O3rrDu6ivInXtBUwnTrnwxK/view?usp=drive_link)
 
 ---
 
@@ -41,78 +41,92 @@
 flowchart TD
     Input([사용자 자연어 음성 명령]) --> Macro
     Macro[총괄 디렉터: Llama 3] --> Micro[파수꾼: Python Sentinel]
-    Vision[비전 AI: YOLO 6D Pose] --> Micro
-    Gesture[제스처 제어: MediaPipe] --> Micro
-    Micro --> Coder[코드 생성: Qwen 2.5]
-    Coder --> Task[ROS2/웹소켓: 코드 승인 및 실행]
-    Task --> Robot[Doosan M0609 및 RG2 그리퍼 구동]
-    Robot --> Sensor[관절 시계열 센서 데이터 수집]
-    Sensor --> Predict[AI 예지보전: 1D-CNN + LSTM]
-    Predict --> Dashboard[Flask 기반 관제 대시보드]
-```
+    Vision[비전 ## 🚀 7. 실행 방법 및 환경 구축 (How to Run)
 
----
+본 프로젝트를 로컬 에지 PC 환경에서 구동하기 위한 통합 가이드라인입니다. **총 3대의 PC(분산 노드) 구성**을 권장합니다.
 
-## 🛠️ 5. 기술 스택 (Tech Stack)
-* **운영체제 및 환경:** Ubuntu 24.04 LTS, ROS2 (Jazzy / Humble 호환), Doosan Robotics DRL, Python 3.10
-* **하드웨어:** Doosan M0609 Robot Arm, OnRobot RG2 Gripper, Intel RealSense Camera, RTX 5060/4060 PC
-* **AI & 비전 모델:** Ollama (Llama 3, Qwen 2.5-Coder), Faster-Whisper, YOLO26n-seg v5, MediaPipe, PyTorch
-* **네트워크 및 데이터베이스:** WebSockets (JSON 실시간 통신), Modbus TCP, Firebase (Firestore), CSV 로깅
-* **웹 프론트엔드 및 백엔드:** Streamlit (작업 지시 UI), Flask (관제 HMI)
+### 1️⃣ 사전 요구 사항 및 시스템 세팅 (Prerequisites)
+- **Task_LLM (작업관리 AI)**: Ubuntu 24.04 LTS, ROS2 Jazzy Jalisco
+- **Code_LLM (코더 AI)**: Ubuntu 22.04 LTS, ROS2 Humble
+- **Audio**: 마이크 입력을 위한 시스템 오디오 라이브러리(`portaudio19-dev`) 필요
 
----
-
-## 💡 6. 트러블슈팅 및 주요 성과 (Troubleshooting & Achievements)
-* **코더 LLM 실시간성(Latency) 대폭 개선:** 1만 자 이상의 한글 프롬프트를 영문 기반 2,020자로 경량화하고 핵심 로직만 생성하도록 역할을 축소하여 코드 생성 시간을 60초에서 10초(약 83% 감소)로 획기적으로 단축했습니다.
-* **YOLO 좌표 오차 및 충돌 위험(Z-Offset) 해결:** 정적 스캔 방식(10초 누적)으로 좌표 정밀도를 확보하고, JSON 데이터 송신 시 안전 마진(`z_offset`)을 명시하여 완벽한 'ㄷ'자 무빙(충돌 방지)을 구현했습니다.
-* **비전 인식 실패 대비 제스처 백업 구현:** 카메라가 물체를 인식하지 못하는 예외 상황을 대비해, 사용자의 손가락 벡터가 가리키는 방향으로 로봇이 시선을 돌리는 록온(Lock-on) 수동 제어 모듈을 결합했습니다.
-* **AI 예지 보전 DB 비용 및 과부하 최적화:** 초당 단위 센서 데이터를 로컬 버퍼에 누적 후 1시간 주기로 압축하여 Firebase에 일괄 전송(Batch Upload)함으로써 실시간성과 API 비용 절감을 동시에 달성했습니다.
-
----
-
-## 🚀 7. 실행 방법 및 환경 구축 (How to Run)
-🚀 시스템 환경 구축 및 실행 가이드 (How to Run)
-본 프로젝트를 로컬 에지 PC 환경에서 에러 없이 구동하기 위한 통합 가이드라인입니다.
-
-### 3개의 폴더를 각기 다른 컴퓨터로 옮겨야 됩니다. 
-
-1. 사전 요구 사항 및 시스템 세팅 (Prerequisites)
-OS: Ubuntu 24.04 LTS(작업관리 ai),  Ubuntu 22.04(코더 ai)
-
-ROS2: Jazzy Jalisco(작업관리 ai), Humble(코더 ai)
-
-Audio: 마이크 입력을 위한 시스템 오디오 라이브러리 필요
-
-1) 시스템 패키지 및 Ollama 플랫폼 설치
-터미널을 열고 다음 명령어를 실행하여 필수 시스템 라이브러리와 로컬 AI 구동 환경을 구축합니다.
-
-Bash
+#### 시스템 패키지 및 Ollama 플랫폼 설치
+```bash
 sudo apt-get update
 sudo apt-get install -y python3-venv python3-pip portaudio19-dev
 
 # Ollama 플랫폼 설치
 curl -fsSL https://ollama.com/install.sh | sh
 
-# 작업 지시용 Llama 3 (8B) 모델 다운로드 - Task_LLM 컴퓨터만 실행합니다.
+# [Task_LLM PC] 작업 지시용 Llama 3 다운로드
 ollama pull llama3:latest
 
-# 코더 제작용 Qwen (7B) 모델 다운로드 - Code_LLM 컴퓨터만 실행합니다.
+# [Code_LLM PC] 코더 제작용 Qwen 다운로드
 ollama pull qwen2.5-coder:7b
+```
 
-2) 작업 폴더 및 가상환경 생성
-OS 전역 패키지와의 충돌을 막기 위해 가상환경(venv)을 생성하고 활성화합니다.
-
-Bash
+#### 작업 폴더 및 가상환경(venv) 생성
+```bash
 mkdir -p ~/doosan_agent && cd ~/doosan_agent
 python3 -m venv myenv
 source myenv/bin/activate
-3) ROS2 시스템 패키지 인식
-터미널을 열 때마다 ROS2 환경을 인식시켜야 합니다.
 
-Bash
+# ROS2 시스템 패키지 소스 (터미널마다 실행)
 source /opt/ros/jazzy/setup.bash
-2. 의존성 패키지 설치 (Dependencies)
-가상환경이 활성화된 상태((myenv))에서 프로젝트 핵심 라이브러리들을 일괄 설치합니다.
+```
+
+### 2️⃣ 의존성 패키지 설치 (Dependencies)
+가상환경이 활성화된 상태(`(myenv)`)에서 핵심 라이브러리들을 일괄 설치합니다.
+
+```bash
+pip install flask>=3.0.0 flask-cors>=4.0.0 torch>=2.0.0 numpy>=1.24.0 pandas>=2.0.0 \
+            streamlit ollama websocket-client faster-whisper SpeechRecognition \
+            pyaudio firebase-admin rclpy opencv-python scipy pyrealsense2 \
+            ultralytics mediapipe ament_index_python pick_and_place_text
+```
+
+> [!IMPORTANT]
+> **Doosan 로봇 제어용 필수 패키지**: 실제 M0609 로봇 제어를 위해 `DR_init`, `DSR_ROBOT2`, `dsr_msgs2`, `dsr_control2`가 워크스페이스에 별도로 설치 및 빌드되어 있어야 합니다.
+
+### 3️⃣ 주요 모듈 실행 순서 (Execution Steps)
+
+#### Step 1. AI 예지보전 백엔드 및 관제 대시보드 실행
+프로젝트 루트 디렉토리로 이동하여 백엔드 서버를 구동합니다.
+```bash
+cd ~/Jarvis_LLM_integration
+python src/AI_/app.py
+```
+> 브라우저에서 `http://127.0.0.1:5000`에 접속하여 실시간 통합 관제(HMI) 대시보드를 확인할 수 있습니다.
+
+#### Step 2. 메인 웹소켓 서버 및 UI 구동
+새 터미널에서 가상환경 및 ROS2 활성화 후, 메인 서버와 관제 UI를 구동합니다.
+```bash
+# 백그라운드 스트림릿 UI 구동
+streamlit run TaskLLM_Node.py &
+
+# 메인 웹소켓 서버 실행 (8888 포트 대기)
+python3 CodeLLM_fine_Node.py
+```
+
+#### Step 3. 외부 컨트롤러 통신 명령 (Action & Prompt)
+메인 서버 구동 후 외부 컨트롤러에서 JSON 형태로 통신을 시작합니다.
+- **스캔 작업 실행**: `{"action": "generate", "prompt": "[Bring-1]"}`
+- **제스처 제어 실행**: `{"action": "generate", "prompt": "[Bring-2]"}`
+- **코드 생성 실행**: `{"action": "generate", "prompt": "사용자 작업 설명"}`
+- **승인 코드 실행**: `{"action": "execute", "code": "<승인된 Python 코드>"}`
+
+### 🛠️ 기타 스크립트 단독 실행
+다른 모듈이나 셸에서 기능별 단독 테스트가 필요할 경우 아래 파이썬 코드를 참고하세요.
+```python
+from integrated_scan_module import run_scan_module
+from gesture_control_module import run_gesture_module
+
+# 스캔 및 좌표 추출 단독 수행
+run_scan_module()
+
+# 제스처 기반 로봇 추종 제어 단독 수행
+run_gesture_module()
+```�환경이 활성화된 상태((myenv))에서 프로젝트 핵심 라이브러리들을 일괄 설치합니다.
 
 1) 통합 설치 명령어 (pip install)
 

@@ -4,7 +4,7 @@
 ---
 
 ## 🎥 시연 영상 (Demo Video)
-*(시연 영상 링크 삽입 예정)*
+- [원본 고화질 시연 영상 보기/다운로드 (Google Drive)](https://drive.google.com/file/d/1YrUbmCHYf9bIrd3qeIUY499i3NGyc1Ca/view?usp=drive_link)
 
 ---
 

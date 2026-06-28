@@ -4,7 +4,7 @@
 ---
 
 ## 🎥 시연 영상 (Demo Video)
-- [시연 영상 보기](https://github.com/soli-robot/portfolio/releases/download/v1.0.0-videos/find_thief_video.mp4)
+- [원본 고화질 시연 영상 보기/다운로드 (Google Drive)](https://drive.google.com/file/d/1oryZ9hMTa0bOIzXSIaYiXXN45wTbtwfL/view?usp=drive_link)
 
 ---
 
