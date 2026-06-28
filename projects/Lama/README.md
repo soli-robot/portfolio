@@ -9,9 +9,9 @@
 ---
 
 ## 📖 1. 프로젝트 개요 (Introduction)
-단순 반복 작업을 하드코딩으로 자동화하는 수준을 넘어, 사람의 모호한 자연어 명령을 스스로 분석하고 기획하여 작업을 수행하는 **Local AI 파트너**임. 산업 환경 변화 시 별도의 재프로그래밍 없이 즉각적으로 대응할 수 있도록, **'작업 지시 AI(Llama 3)'**와 **'코드 생성 AI(Qwen 2.5-Coder)'**를 물리적/논리적으로 분리한 3단계 분업 아키텍처를 도입함.
+단순 반복 작업을 하드코딩으로 자동화하는 수준을 넘어, 사람의 모호한 자연어 명령을 스스로 분석하고 기획하여 작업을 수행하는 **Local AI 파트너**임 산업 환경 변화 시 별도의 재프로그래밍 없이 즉각적으로 대응할 수 있도록, **'작업 지시 AI(Llama 3)'**와 **'코드 생성 AI(Qwen 2.5-Coder)'**를 물리적/논리적으로 분리한 3단계 분업 아키텍처를 도입함
 
-여기에 더해 RealSense 기반 비전 인식, MediaPipe 제스처 수동 제어, 그리고 1D-CNN + LSTM 기반의 AI 예지보전 모니터링 시스템을 하나의 통합된 웹소켓 및 Flask 런타임으로 결합하여 시스템의 유연성과 안전성을 극대화함.
+여기에 더해 RealSense 기반 비전 인식, MediaPipe 제스처 수동 제어, 그리고 1D-CNN + LSTM 기반의 AI 예지보전 모니터링 시스템을 하나의 통합된 웹소켓 및 Flask 런타임으로 결합하여 시스템의 유연성과 안전성을 극대화함
 
 ---
 
@@ -27,15 +27,15 @@
 ---
 
 ## 🎯 3. 주요 기능 (Key Features)
-* **자연어 기반 작업 자동 생성:** 사용자의 자연어 명령을 분석해 Doosan M0609용 Python 제어 코드로 자동 변환하고, 승인된 코드만 하드웨어에 전달함.
-* **비전 기반 좌표 추출:** RealSense와 YOLO를 통해 객체 위치를 탐지하고, 캘리브레이션 행렬을 이용해 로봇 기준 3D 좌표계로 정밀하게 변환함.
-* **제스처 기반 수동 백업 제어:** 손가락 개수(0~5개)를 인식하여 추종, 표면 방향 추적, Pick & Place, 자세 미세 조정, 홈 포지션 복귀 등의 제어를 수행함.
-* **AI 예지보전 통합 관제:** 로봇의 6개 관절 시계열 센서 데이터를 바탕으로 고장을 예측하고, Modbus TCP 기반 대시보드로 현장 인프라를 실시간 모니터링함.
+* **자연어 기반 작업 자동 생성:** 사용자의 자연어 명령을 분석해 Doosan M0609용 Python 제어 코드로 자동 변환하고, 승인된 코드만 하드웨어에 전달함
+* **비전 기반 좌표 추출:** RealSense와 YOLO를 통해 객체 위치를 탐지하고, 캘리브레이션 행렬을 이용해 로봇 기준 3D 좌표계로 정밀하게 변환함
+* **제스처 기반 수동 백업 제어:** 손가락 개수(0~5개)를 인식하여 추종, 표면 방향 추적, Pick & Place, 자세 미세 조정, 홈 포지션 복귀 등의 제어를 수행함
+* **AI 예지보전 통합 관제:** 로봇의 6개 관절 시계열 센서 데이터를 바탕으로 고장을 예측하고, Modbus TCP 기반 대시보드로 현장 인프라를 실시간 모니터링함
 
 ---
 
 ## 📌 4. 시스템 핵심 아키텍처 (Architecture & Pipeline)
-본 시스템은 단일 LLM의 연산 부하 문제를 해결하고 물리적 인프라와의 연동성을 높이기 위해 전체 구조를 유기적으로 연결함.
+본 시스템은 단일 LLM의 연산 부하 문제를 해결하고 물리적 인프라와의 연동성을 높이기 위해 전체 구조를 유기적으로 연결함
 
 ```mermaid
 flowchart TD
@@ -43,7 +43,7 @@ flowchart TD
     Macro[총괄 디렉터: Llama 3] --> Micro[파수꾼: Python Sentinel]
     Vision[비전 ## 🚀 7. 실행 방법 및 환경 구축 (How to Run)
 
-본 프로젝트를 로컬 에지 PC 환경에서 구동하기 위한 통합 가이드라인임. **총 3대의 PC(분산 노드) 구성**을 권장함.
+본 프로젝트를 로컬 에지 PC 환경에서 구동하기 위한 통합 가이드라인임 **총 3대의 PC(분산 노드) 구성**을 권장함
 
 ### 1️⃣ 사전 요구 사항 및 시스템 세팅 (Prerequisites)
 - **Task_LLM (작업관리 AI)**: Ubuntu 24.04 LTS, ROS2 Jazzy Jalisco
@@ -76,7 +76,7 @@ source /opt/ros/jazzy/setup.bash
 ```
 
 ### 2️⃣ 의존성 패키지 설치 (Dependencies)
-가상환경이 활성화된 상태(`(myenv)`)에서 핵심 라이브러리들을 일괄 설치함.
+가상환경이 활성화된 상태(`(myenv)`)에서 핵심 라이브러리들을 일괄 설치함
 
 ```bash
 pip install flask>=3.0.0 flask-cors>=4.0.0 torch>=2.0.0 numpy>=1.24.0 pandas>=2.0.0 \
@@ -86,20 +86,20 @@ pip install flask>=3.0.0 flask-cors>=4.0.0 torch>=2.0.0 numpy>=1.24.0 pandas>=2.
 ```
 
 > [!IMPORTANT]
-> **Doosan 로봇 제어용 필수 패키지**: 실제 M0609 로봇 제어를 위해 `DR_init`, `DSR_ROBOT2`, `dsr_msgs2`, `dsr_control2`가 워크스페이스에 별도로 설치 및 빌드되어 있어야 함.
+> **Doosan 로봇 제어용 필수 패키지**: 실제 M0609 로봇 제어를 위해 `DR_init`, `DSR_ROBOT2`, `dsr_msgs2`, `dsr_control2`가 워크스페이스에 별도로 설치 및 빌드되어 있어야 함
 
 ### 3️⃣ 주요 모듈 실행 순서 (Execution Steps)
 
 #### Step 1. AI 예지보전 백엔드 및 관제 대시보드 실행
-프로젝트 루트 디렉토리로 이동하여 백엔드 서버를 구동함.
+프로젝트 루트 디렉토리로 이동하여 백엔드 서버를 구동함
 ```bash
 cd ~/Jarvis_LLM_integration
 python src/AI_/app.py
 ```
-> 브라우저에서 `http://127.0.0.1:5000`에 접속하여 실시간 통합 관제(HMI) 대시보드를 확인할 수 있음.
+> 브라우저에서 `http://127.0.0.1:5000`에 접속하여 실시간 통합 관제(HMI) 대시보드를 확인할 수 있음
 
 #### Step 2. 메인 웹소켓 서버 및 UI 구동
-새 터미널에서 가상환경 및 ROS2 활성화 후, 메인 서버와 관제 UI를 구동함.
+새 터미널에서 가상환경 및 ROS2 활성화 후, 메인 서버와 관제 UI를 구동함
 ```bash
 # 백그라운드 스트림릿 UI 구동
 streamlit run TaskLLM_Node.py &
@@ -109,14 +109,14 @@ python3 CodeLLM_fine_Node.py
 ```
 
 #### Step 3. 외부 컨트롤러 통신 명령 (Action & Prompt)
-메인 서버 구동 후 외부 컨트롤러에서 JSON 형태로 통신을 시작함.
+메인 서버 구동 후 외부 컨트롤러에서 JSON 형태로 통신을 시작함
 - **스캔 작업 실행**: `{"action": "generate", "prompt": "[Bring-1]"}`
 - **제스처 제어 실행**: `{"action": "generate", "prompt": "[Bring-2]"}`
 - **코드 생성 실행**: `{"action": "generate", "prompt": "사용자 작업 설명"}`
 - **승인 코드 실행**: `{"action": "execute", "code": "<승인된 Python 코드>"}`
 
 ### 🛠️ 기타 스크립트 단독 실행
-다른 모듈이나 셸에서 기능별 단독 테스트가 필요할 경우 아래 파이썬 코드를 참고하세요.
+다른 모듈이나 셸에서 기능별 단독 테스트가 필요할 경우 아래 파이썬 코드를 참고하세요
 ```python
 from integrated_scan_module import run_scan_module
 from gesture_control_module import run_gesture_module
@@ -126,7 +126,7 @@ run_scan_module()
 
 # 제스처 기반 로봇 추종 제어 단독 수행
 run_gesture_module()
-```�환경이 활성화된 상태((myenv))에서 프로젝트 핵심 라이브러리들을 일괄 설치함.
+```�환경이 활성화된 상태((myenv))에서 프로젝트 핵심 라이브러리들을 일괄 설치함
 
 1) 통합 설치 명령어 (pip install)
 
@@ -136,7 +136,7 @@ pip install flask>=3.0.0 flask-cors>=4.0.0 torch>=2.0.0 numpy>=1.24.0 pandas>=2.
             pyaudio firebase-admin rclpy opencv-python scipy pyrealsense2 \
             ultralytics mediapipe ament_index_python pick_and_place_text
 2) Doosan 로봇 제어용 필수 패키지
-추가로 Doosan M0609 로봇 제어를 위해 다음 구성 요소가 프로젝트 환경에 맞게 별도 설치되어 있어야 함.
+추가로 Doosan M0609 로봇 제어를 위해 다음 구성 요소가 프로젝트 환경에 맞게 별도 설치되어 있어야 함
 
 DR_init
 
@@ -148,18 +148,18 @@ dsr_control2
 
 3. 주요 모듈 아키텍처 (Modules)
 3-1. CodeLLM_fine_Node.py
-전체 시스템의 메인 웹소켓 서버(포트 8888) 역할을 함. 외부 컨트롤러와 연결된 뒤, 전달된 요청을 분기 처리함.
+전체 시스템의 메인 웹소켓 서버(포트 8888) 역할을 함 외부 컨트롤러와 연결된 뒤, 전달된 요청을 분기 처리함
 
 [Bring-1]: 스캔 모듈을 안전하게 호출하여 객체 좌표 수집
 
 [Bring-2]: 제스처 제어 모듈을 호출하여 손 제스처 기반 제어 수행
 
-generate: qwen2.5-coder:7b 모델을 사용해 로봇 작업 코드 생성. 생성된 코드는 후처리되어 perform_task() 본문으로 정리되며, 로컬 파일 저장 및 Firebase Firestore에 로그 기록.
+generate: qwen2.5-coder:7b 모델을 사용해 로봇 작업 코드 생성 생성된 코드는 후처리되어 perform_task() 본문으로 정리되며, 로컬 파일 저장 및 Firebase Firestore에 로그 기록
 
 execute: 승인된 코드를 실제로 실행
 
 3-2. integrated_scan_module.py
-비전 기반 객체 스캔과 3D 좌표 추출을 담당함.
+비전 기반 객체 스캔과 3D 좌표 추출을 담당함
 
 RealSense 카메라 초기화
 
@@ -172,9 +172,9 @@ YOLO 모델로 객체 탐지
 안정적으로 모인 좌표 클러스터링 후 scan_result_base_coord.json에 최종 저장
 
 3-3. gesture_control_module.py
-손 제스처 기반 로봇 제어를 담당함. (실시간 수동 보정, 객체 중심 이동, 홈 복귀, Pick & Place)
+손 제스처 기반 로봇 제어를 담당함 (실시간 수동 보정, 객체 중심 이동, 홈 복귀, Pick & Place)
 
-RealSense와 YOLO로 객체 인식 후, MediaPipe로 손가락 개수를 판별함.
+RealSense와 YOLO로 객체 인식 후, MediaPipe로 손가락 개수를 판별함
 
 손가락 개수에 따른 동작 분기:
 
@@ -190,28 +190,28 @@ RealSense와 YOLO로 객체 인식 후, MediaPipe로 손가락 개수를 판별�
 
 0개: 그리퍼 닫기
 
-timeout=30.0초 동안 손이 감지되지 않으면 자동 종료됨.
+timeout=30.0초 동안 손이 감지되지 않으면 자동 종료됨
 
 4. 통합 실행 순서 (Execution Steps)
-아래 순서대로 시스템을 구동하는 것을 권장함.
+아래 순서대로 시스템을 구동하는 것을 권장함
 
 4-1. 사전 준비 체크
-모델 파일(towel_yolo26n_seg_v5_best.pt)과 캘리브레이션 파일(T_gripper2camera.npy) 경로 확인.
+모델 파일(towel_yolo26n_seg_v5_best.pt)과 캘리브레이션 파일(T_gripper2camera.npy) 경로 확인
 
-Doosan 로봇, RealSense 카메라, OnRobot RG2 그리퍼 및 네트워크 연결 상태 확인.
+Doosan 로봇, RealSense 카메라, OnRobot RG2 그리퍼 및 네트워크 연결 상태 확인
 
-로봇 툴 세팅과 TCP 설정은 Tool Weight, GripperDA_v1 기준 적용 확인.
+로봇 툴 세팅과 TCP 설정은 Tool Weight, GripperDA_v1 기준 적용 확인
 
 4-2. AI 예지보전 백엔드 및 관제 대시보드 실행
-프로젝트 루트 디렉토리로 이동하여 백엔드 서버를 켭니다.
+프로젝트 루트 디렉토리로 이동하여 백엔드 서버를 켭니다
 
 Bash
 cd C:\rokey\Jarvis_LLM_integration
 python src/AI_/app.py
-HMI 진입: 브라우저에서 http://127.0.0.1:5000으로 접속하여 실시간 통합 관제 확인.
+HMI 진입: 브라우저에서 http://127.0.0.1:5000으로 접속하여 실시간 통합 관제 확인
 
 4-3. 메인 웹소켓 서버 및 UI 구동
-새 터미널에서 가상환경 및 ROS2 활성화 후, 메인 서버와 관제 UI를 구동함.
+새 터미널에서 가상환경 및 ROS2 활성화 후, 메인 서버와 관제 UI를 구동함
 
 Bash
 # 백그라운드 스트림릿 UI 구동
@@ -220,7 +220,7 @@ streamlit run TaskLLM_Node.py
 # 메인 웹소켓 서버 실행 (8888 포트)
 python3 CodeLLM_fine_Node.py
 4-4. 외부 컨트롤러 통신 명령 (Action & Prompt)
-메인 서버 구동 후 외부 컨트롤러에서 JSON 형태로 다음 명령을 전달하여 작업을 지시함.
+메인 서버 구동 후 외부 컨트롤러에서 JSON 형태로 다음 명령을 전달하여 작업을 지시함
 
 스캔 작업 실행: action = "generate", prompt = "[Bring-1]"
 
@@ -231,7 +231,7 @@ python3 CodeLLM_fine_Node.py
 승인 코드 실행: action = "execute", code = "<승인된 Python 코드>" (temp_robot_run.py로 임시 저장 후 로봇 동작)
 
 5. 스크립트 단독 실행 참고
-다른 모듈이나 셸에서 기능별 단독 테스트가 필요할 경우 아래 함수를 직접 호출할 수 있음. (단, ROS2 및 로봇 제어 환경이 정상적으로 준비된 상태여야 함.)
+다른 모듈이나 셸에서 기능별 단독 테스트가 필요할 경우 아래 함수를 직접 호출할 수 있음 (단, ROS2 및 로봇 제어 환경이 정상적으로 준비된 상태여야 함)
 
 Python
 from integrated_scan_module import run_scan_module
