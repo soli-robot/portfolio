@@ -7,7 +7,6 @@
 <video src="https://github.com/soli-robot/portfolio/raw/main/projects/Isaac/isaac_video_compressed.mp4" controls="controls" width="100%"></video>
 
 - [원본 고화질 시연 영상 보기/다운로드 (Google Drive)](https://drive.google.com/file/d/11oT84DWzO0lYnFYUb4PZSTShq1LefNRS/view?usp=drive_link)
-- [발표 자료 다운로드 (PDF)](./pdf/Presentation.pdf)
 
 ---
 
