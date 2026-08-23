@@ -48,6 +48,6 @@
 ---
 
 ## 📬 Contact & Links
-- **GitHub**: [github.com/soli-robot](https://github.com/soli-robot)
+- **GitHub**: abcdsjj7378@gmail.com
 
 > *“각 프로젝트 폴더 내부의 `README.md`에서 시스템의 한계점과 안정성을 코드 레벨에서 치열하게 고민하고 해결해낸 **상세한 트러블슈팅(Troubleshooting)** 기록 제공”*
