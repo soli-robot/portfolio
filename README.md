@@ -47,6 +47,12 @@
 
 ---
 
+## 📜 추천서 (Recommendation Letter)
+두산 로보틱스 부트캠프 수료 및 실무 프로젝트 수행 과정에서의 성실함과 문제 해결 능력을 인정받아 작성된 추천서입니다.
+- 📄 **[추천서 열람하기 (DRC07179_송종진.pdf)](./DRC07179_SongJongjin_Recommendation.pdf)**
+
+---
+
 ## 📬 Contact & Links
 - **GitHub**: abcdsjj7378@gmail.com
 
