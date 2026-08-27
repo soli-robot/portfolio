@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>cobot1</name>
+  <version>0.0.0</version>
+  <description>두산 로봇 제어 및 점자 타각 패키지</description>
+  <maintainer email="abcdsjj7378@gamil.com">soli</maintainer>
+  <license>Apache-2.0</license>
+
+  <!-- 빌드 및 실행 공통 의존성 -->
+  <depend>rclpy</depend>
+  <depend>dsr_msgs2</depend>
+  <depend>common2</depend> 
+  <depend>action_msgs</depend>
+  <depend>cobot_interface</depend>
+
+  <!-- [추가] 실행 시 필요한 파이썬 라이브러리 의존성 -->
+  <!-- 유니코드 처리 및 수치 계산을 위한 의존성 명시 -->
+  <exec_depend>python3-numpy</exec_depend>
+  
+  <!-- 만약 설정값을 XML 대신 YAML로 관리할 계획이 있다면 추가 -->
+  <exec_depend>python3-yaml</exec_depend>
+
+  <!-- [추가] 런타임에 필요한 메시지 패키지들 (두산 로봇 인터페이스용) -->
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+
+  <!-- 테스트 의존성 -->
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

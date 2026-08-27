@@ -1,0 +1,14 @@
+
+
+
+# 1. Goal (클라이언트가 서버에 보내는 명령)
+string text              # 타각할 문장 (예: "Hello")
+---
+# 2. Result (서버가 최종 완료 후 보내는 결과)
+bool success             # 성공 여부
+string message           # 완료 메시지 (예: "5글자 타각 완료")
+---
+# 3. Feedback (서버가 동작 중에 실시간으로 보내는 정보)
+int32 current_char_index # 현재 타각 중인 글자 번호
+int32 total_chars        # 전체 타각해야 할 글자 수
+float32 progress         # 진행률 (0.0 ~ 100.0)
