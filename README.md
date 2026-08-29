@@ -21,13 +21,13 @@
 
 본 저장소는 시스템의 아키텍처부터 하위 노드 제어까지 직접 구현한 4가지 핵심 프로젝트 포함 각 제목을 클릭하면 상세한 시스템 파이프라인과 트러블슈팅(문제 해결) 기록 확인 가능
 
-### 1. 🤖 [춘식아 해줘 - Semantic AI 기반 자율 협동 로봇 어시스턴트](projects/Lama/)
+### 1. 🤖 [춘식아 해줘 - 듀얼 LLM 기반 자율 협동 로봇 어시스턴트](projects/Lama/)
 **"단순 반복을 넘어, 자연어 명령을 스스로 기획하고 코드로 변환하는 Local AI 파트너"**
 - **역할 및 기여**: 코더 LLM(Qwen 2.5-Coder) 프롬프트 최적화, 파이썬 기반 로봇 제어 API 템플릿 설계
 - **기술 스택**: Llama 3, Qwen 2.5-Coder, ROS2, Python, Flask, Modbus TCP
 - **주요 성과**: 1만 자 이상의 프롬프트를 2천 자 수준으로 경량화하여 **코드 생성 Latency를 60초에서 10초로 대폭 단축(83% 개선)**.
 
-### 2. 🪐 [춘식이 화성가즈아 - 디지털 트윈 기반 로봇 자동화 시뮬레이션 시스템](projects/Isaac/)
+### 2. 🪐 [춘식이 화성가즈아 - 듀얼 LLM 기반 로봇 자동화 시뮬레이션 시스템](projects/Isaac/)
 **"Florence-2 / DeepSeek-R1 분산형 VLA 기반 로봇 에이전트 및 자가 복구 생존 시스템"**
 - **역할 및 기여**: ROS2 Nav2 자율주행 최적화, IMU 기반 전도 감지 및 기립 제어, OpenCV LiDAR 매칭 자가 복구 루틴 개발
 - **기술 스택**: NVIDIA Isaac Sim, DeepSeek-R1, Florence-2, ROS2 Nav2, OpenCV, PyTorch
