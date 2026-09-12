@@ -9,9 +9,9 @@
 ---
 
 ## 📄 포트폴리오 문서 (Portfolio Document)
-- 🇰🇷 **[포트폴리오 PDF 열람 및 다운로드 (송종진_포트폴리오.pdf)](./%EC%86%A1%EC%A2%85%EC%A7%84_%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4.pdf)**
-- 🌐 **[Portfolio PDF - English Version (portfolio_English.pdf)](./portfolio_English.pdf)**
-- 📜 **[두산로보틱스 추천서 열람 (DRC07179_SongJongjin_Recommendation.pdf)](./DRC07179_SongJongjin_Recommendation.pdf)**
+- **[포트폴리오 PDF 열람 및 다운로드 (송종진_포트폴리오.pdf)](./%EC%86%A1%EC%A2%85%EC%A7%84_%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4.pdf)**
+- **[Portfolio PDF - English Version (portfolio_English.pdf)](./portfolio_English.pdf)**
+- **[두산로보틱스 추천서 열람 (DRC07179_SongJongjin_Recommendation.pdf)](./DRC07179_SongJongjin_Recommendation.pdf)**
 
 ---
 
